@@ -44,8 +44,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-i
-import cn.a17xiezuo.xzlibrary.model.DisplayInfo;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +66,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.crypto.Cipher;
+
+import cn.a17xiezuo.xzlibrary.common.Constants;
+import cn.a17xiezuo.xzlibrary.ui.view.MyURLSpan;
 
 public class Utility {
 
@@ -103,16 +105,6 @@ public class Utility {
     public static int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
-    }
-
-    public static DisplayInfo getDisplayInfo(Context context) {
-        DisplayInfo displayInfo = new DisplayInfo();
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        displayInfo.setWidthPixel(metrics.widthPixels);
-        displayInfo.setHeightPixel(metrics.heightPixels);
-        displayInfo.setDensity(metrics.density);
-        displayInfo.setDensityDpi(metrics.densityDpi);
-        return displayInfo;
     }
 
 
@@ -982,20 +974,7 @@ public class Utility {
             }
         }
 
-        for (int i = 0; i < userList.size(); i++) {
-            ForegroundColorSpan s = new ForegroundColorSpan(
-                    Color.parseColor("#" + color));
-            builder.setSpan(
-                    new CardInfoSpan(mContext, ((CommentAtuser) (userList
-                            .get(i).get("matuser"))).getUserId()), Integer
-                            .parseInt(userList.get(i).get("start").toString()),
-                    Integer.parseInt(userList.get(i).get("end").toString()),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            builder.setSpan(s,
-                    Integer.parseInt(userList.get(i).get("start").toString()),
-                    Integer.parseInt(userList.get(i).get("end").toString()),
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
+
         textView.setAutoLinkMask(0);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
         textView.setText(builder);
@@ -1032,34 +1011,7 @@ public class Utility {
         return m.matches();
     }
 
-    public static G_Resources getmayGuideResources(Context context, String id) {
-        GuideResources guideResources;
-        G_Resources gr = null;
-        guideResources = getGuideResources(context);
-        if (guideResources != null) {
-            gr = guideResources.get().get(id);
-        }
-        return gr;
-    }
 
-    private static GuideResources getGuideResources(Context context) {
-        GuideResources guideResources = null;
-        GuideResourcesParser guideRp = new GuideResourcesParser();
-        try {
-            guideResources = guideRp.fromXmlResource(context.getResources()
-                    .getXml(R.xml.guide_resources));
-        } catch (NotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (XmlPullParserException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return guideResources;
-    }
 
     public static String getStackTraceString(
             StackTraceElement[] stackTraceElements) {
@@ -1071,131 +1023,6 @@ public class Utility {
         return stringBuilder.toString();
     }
 
-    /**
-     * @return
-     */
-    public static DisplayImageOptions getUserIconDisplayOption() {
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_user_icon)
-                .showImageForEmptyUri(R.drawable.ic_user_icon)
-                .showImageOnFail(R.drawable.ic_user_icon)
-                .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-                .considerExifParams(true).resetViewBeforeLoading(true)
-                .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-        return options;
-    }
-
-    /**
-     * @return
-     */
-    public static DisplayImageOptions getUserIconDisplayOptionNull(
-            String defaultText) {
-        DisplayImageOptions options;
-        if (TextUtils.isEmpty(defaultText)) {
-            options = new DisplayImageOptions.Builder()
-                    .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-                    .considerExifParams(true).resetViewBeforeLoading(true)
-                    .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                    .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-        } else {
-            Drawable d = new BitmapDrawable(
-                    ImageUtils.getDefaultBitmapByString(defaultText));
-            options = new DisplayImageOptions.Builder().showImageOnLoading(d)
-                    .showImageForEmptyUri(d).showImageOnFail(d)
-                    .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-                    .considerExifParams(true).resetViewBeforeLoading(true)
-                    .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                    .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-        }
-        return options;
-    }
-
-    /**
-     * @return
-     */
-    public static DisplayImageOptions getUserIconDisplayOptionNotNull(
-            String defaultText) {
-        DisplayImageOptions options;
-        if (!TextUtils.isEmpty(defaultText)) {
-            // if (TextUtils.isEmpty(defaultText)) {
-            // options = new DisplayImageOptions.Builder()
-            // .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-            // .considerExifParams(true).resetViewBeforeLoading(true)
-            // .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-            // .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-            // } else {
-            Drawable d = new BitmapDrawable(
-                    ImageUtils.getDefaultBitmapByString(defaultText));
-            options = new DisplayImageOptions.Builder().showImageOnLoading(d)
-                    .showImageForEmptyUri(d).showImageOnFail(d)
-                    .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-                    .considerExifParams(true).resetViewBeforeLoading(true)
-                    .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                    .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-            // }
-            return options;
-        } else {
-            options = new DisplayImageOptions.Builder()
-                    .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-                    .considerExifParams(true).resetViewBeforeLoading(true)
-                    .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                    .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-            // }
-            return options;
-        }
-    }
-
-    public static DisplayImageOptions getUserIconDisplayOptionNotNull(Drawable d) {
-        DisplayImageOptions options;
-        if (d != null) {
-            options = new DisplayImageOptions.Builder().showImageOnLoading(d)
-                    .showImageForEmptyUri(d).showImageOnFail(d)
-                    .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-                    .considerExifParams(true).resetViewBeforeLoading(true)
-                    .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                    .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-            // }
-            return options;
-        } else {
-            options = new DisplayImageOptions.Builder()
-                    .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory()
-                    .considerExifParams(true).resetViewBeforeLoading(true)
-                    .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                    .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-            // }
-            return options;
-        }
-    }
-
-    /**
-     * @return
-     */
-    public static DisplayImageOptions getImageDisplayOption() {
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_image_loading)
-                .showImageForEmptyUri(R.drawable.ic_image_loading)
-                .showImageOnFail(R.drawable.ic_image_loading)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                // .cacheInMemory()
-                .considerExifParams(true).resetViewBeforeLoading(true)
-                .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-        return options;
-    }
-
-    public static DisplayImageOptions getTargetDisplayOption() {
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_icon_target_logo_loading)
-                .showImageForEmptyUri(R.drawable.ic_icon_target_logo_none)
-                .showImageOnFail(R.drawable.ic_icon_target_logo_none)
-                .bitmapConfig(Bitmap.Config.RGB_565)
-                // .cacheInMemory()
-                .considerExifParams(true).resetViewBeforeLoading(true)
-                .cacheOnDisk(true).displayer(new SimpleBitmapDisplayer())
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED).build();
-        return options;
-    }
 
     /**
      * 加密
@@ -1243,110 +1070,8 @@ public class Utility {
         return "";
     }
 
-    /**
-     * 判断是否管理员权限
-     *
-     * @return
-     */
-    public static boolean isAdmin(Context mContext) {
-        // TODO Auto-generated method stub
-        String roles = SharedPreferencesUtil.getRoles(mContext).toString()
-                .trim();
-        if (TextUtils.isEmpty(roles)) {
-            return false;
-        } else {
-            try {
-                JSONArray jsonArray = new JSONArray(roles);
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    if (jsonArray.getJSONObject(i).getString("authority")
-                            .contains("ROLE_ADMIN")) {
-                        return true;
-                    }
-                }
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return false;
-            }
-            return false;
-        }
-    }
 
-    /**
-     * 是否有权限
-     *
-     * @param userId
-     * @param mContext
-     * @return
-     */
-    public static boolean hasPremission(String userId, Context mContext) {
-        if (userId.equals(SharedPreferencesUtil.getLoginUserId(mContext))) {
-            return true;
-        }
-        String authoritys = SharedPreferencesUtil.getString(
-                mContext,
-                SharedPreferencesUtil.KEY_AUTHORITYS
-                        + SharedPreferencesUtil.getLoginUserId(mContext));
-        if (!TextUtils.isEmpty(authoritys)) {
-            if (authoritys.contains(userId)) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
 
-    /**
-     * 判断是否需要静默
-     *
-     * @return
-     */
-    public static boolean needNodisturb(Context context) {
-        boolean flag = false;
-        if (!TextUtils.isEmpty(SharedPreferencesUtil.getString(
-                context,
-                SharedPreferencesUtil.KEY_DISTURBTOGGLE
-                        + SharedPreferencesUtil.getLoginUserId(context)))
-                && SharedPreferencesUtil
-                .getString(
-                        context,
-                        SharedPreferencesUtil.KEY_DISTURBTOGGLE
-                                + SharedPreferencesUtil
-                                .getLoginUserId(context))
-                .equals("true")) {
-            Calendar c = Calendar.getInstance();
-            c.setTimeInMillis(System.currentTimeMillis());
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-            int date = hour * 3600 + minute * 60;
-            int date1 = 24 * 3600;
-            int date2 = 0;
-            int dates = getSH(context) * 3600 + getSM(context) * 60;
-            int datee = getEH(context) * 3600 + getEM(context) * 60;
-            if (dates > datee) {
-                if (date > dates && date < date1) {
-                    flag = true;
-                } else if (date > date2 && date < datee) {
-                    flag = true;
-                } else {
-                    flag = false;
-                }
-            } else if (dates < datee) {
-                if (date > dates && date < datee) {
-                    flag = true;
-                } else {
-                    flag = false;
-                }
-            } else {
-                flag = false;
-            }
-        } else {
-            flag = false;
-        }
-        return flag;
-    }
 
     /**
      * 时间格式化
@@ -1365,65 +1090,7 @@ public class Utility {
         return (df.format(time));
     }
 
-    /**
-     * 得到设置的开始小时
-     *
-     * @return
-     */
-    public static int getSH(Context conte) {
-        int shour = SharedPreferencesUtil.getInt(
-                conte,
-                SharedPreferencesUtil.KEY_DISTURBSH
-                        + SharedPreferencesUtil.getLoginUserId(conte), -1);
 
-        shour = shour < 0 ? 23 : shour;
-        return shour;
-    }
-
-    /**
-     * 得到设置的开始分钟
-     *
-     * @return
-     */
-    public static int getSM(Context conte) {
-        int sminute = SharedPreferencesUtil.getInt(
-                conte,
-                SharedPreferencesUtil.KEY_DISTURBSM
-                        + SharedPreferencesUtil.getLoginUserId(conte), -1);
-
-        sminute = sminute < 0 ? 0 : sminute;
-        return sminute;
-    }
-
-    /**
-     * 得到设置的结束小时
-     *
-     * @return
-     */
-    public static int getEH(Context conte) {
-        int ehour = SharedPreferencesUtil.getInt(
-                conte,
-                SharedPreferencesUtil.KEY_DISTURBEH
-                        + SharedPreferencesUtil.getLoginUserId(conte), -1);
-
-        ehour = ehour < 0 ? 8 : ehour;
-        return ehour;
-    }
-
-    /**
-     * 得到设置的结束分钟
-     *
-     * @return
-     */
-    public static int getEM(Context conte) {
-        int eminute = SharedPreferencesUtil.getInt(
-                conte,
-                SharedPreferencesUtil.KEY_DISTURBEM
-                        + SharedPreferencesUtil.getLoginUserId(conte), -1);
-
-        eminute = eminute < 0 ? 0 : eminute;
-        return eminute;
-    }
 
     /**
      * sqlite的特殊字符转义及通配符
@@ -1444,44 +1111,7 @@ public class Utility {
         return keyWord;
     }
 
-    /**
-     * GCJ-02 坐标转换成 BD-09
-     *
-     * @param gg_lat
-     * @param gg_lon
-     * @return
-     */
-    public static LatLng bd_encrypt(double gg_lat, double gg_lon) {
-        double bd_lat;
-        double bd_lon;
-        double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-        double x = gg_lon, y = gg_lat;
-        double z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
-        double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
-        bd_lon = z * Math.cos(theta) + 0.0065;
-        bd_lat = z * Math.sin(theta) + 0.006;
-        return new LatLng(bd_lat, bd_lon);
 
-    }
-
-    /**
-     * BD-09 坐标转换成 GCJ-02
-     *
-     * @param bd_lat
-     * @param bd_lon
-     * @return
-     */
-    public static LatLng bd_decrypt(double bd_lat, double bd_lon) {
-        double gg_lat;
-        double gg_lon;
-        double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-        double x = bd_lon - 0.0065, y = bd_lat - 0.006;
-        double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
-        double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
-        gg_lon = z * Math.cos(theta);
-        gg_lat = z * Math.sin(theta);
-        return new LatLng(gg_lat, gg_lon);
-    }
 
     /**
      * 判断GPS是否开启，GPS或者AGPS开启一个就认为是开启的
@@ -1556,161 +1186,8 @@ public class Utility {
         return false;
     }
 
-    /**
-     * 获取文件类型(该方法需要补充，目前格式不全)
-     *
-     * @param name
-     * @return resourceId
-     */
-    public static int fileType(String name) {
-        int resourceId = R.drawable.ic_file;
-        if (name == null)
-            return resourceId;
 
-        if (name.toLowerCase().endsWith(".png")
-                || name.toLowerCase().endsWith(".jpeg")
-                || name.toLowerCase().endsWith(".jpg")
-                || name.toLowerCase().endsWith(".bmp")
-                || name.toLowerCase().endsWith(".gif")) {
-            resourceId = R.drawable.ic_file_jpg;
-        } else if (name.toLowerCase().endsWith(".pdf")) {
-            resourceId = R.drawable.ic_file_pdf;
-        } else if (name.toLowerCase().endsWith(".doc")
-                || name.toLowerCase().endsWith(".docx")) {
-            resourceId = R.drawable.ic_file_doc;
-        } else if (name.toLowerCase().endsWith(".ppt")
-                || name.toLowerCase().endsWith(".pptx")) {
-            resourceId = R.drawable.ic_file_ppt;
-        } else if (name.toLowerCase().endsWith(".xls")
-                || name.toLowerCase().endsWith(".xlsx")) {
-            resourceId = R.drawable.ic_file_xls;
-        } else if (name.toLowerCase().endsWith(".mp3")) {
-            resourceId = R.drawable.ic_file_mp3;
-        } else if (name.toLowerCase().endsWith(".mp4")
-                || name.toLowerCase().endsWith(".mpge")
-                || name.toLowerCase().endsWith(".mpg")
-                || name.toLowerCase().endsWith(".dat")
-                || name.toLowerCase().endsWith(".avi")
-                || name.toLowerCase().endsWith(".mov")
-                || name.toLowerCase().endsWith(".asf")
-                || name.toLowerCase().endsWith(".wmv")
-                || name.toLowerCase().endsWith(".navi")
-                || name.toLowerCase().endsWith(".3gp")
-                || name.toLowerCase().endsWith(".mkv")
-                || name.toLowerCase().endsWith(".flv")
-                || name.toLowerCase().endsWith(".rmvb")) {
-            resourceId = R.drawable.ic_file_mp4;
-        } else if (name.toLowerCase().endsWith(".zip")
-                || name.toLowerCase().endsWith(".rar")
-                || name.toLowerCase().endsWith(".7z")
-                || name.toLowerCase().endsWith(".tar.gz")
-                || name.toLowerCase().endsWith(".gzip")
-                || name.toLowerCase().endsWith(".iso")
-                || name.toLowerCase().endsWith(".jar")) {
-            resourceId = R.drawable.ic_file_zip;
-        } else if (name.toLowerCase().endsWith(".txt")
-                || name.toLowerCase().endsWith(".rtf")) {
-            resourceId = R.drawable.ic_file_text;
-        } else {
-            resourceId = R.drawable.ic_file;
-        }
-        return resourceId;
-    }
 
-    /**
-     * 人员头像创建view
-     *
-     * @param employeeInfos
-     * @param showNum
-     * @return
-     */
-    public static View setupPersonViews(ArrayList<EmployeeInfo> employeeInfos,
-                                        int showNum, Context mContext) {
-        LinearLayout contentView = new LinearLayout(mContext);
-        contentView.setOrientation(LinearLayout.HORIZONTAL);
-
-        // 使添加的view靠右
-        RelativeLayout resultView = new RelativeLayout(mContext);
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-        lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);// 与父容器的右侧对齐
-
-        if (employeeInfos != null) {
-            for (int i = 0; i < employeeInfos.size(); i++) {
-                final EmployeeInfo employeeInfo = employeeInfos.get(i);
-                final PersonView personView = new PersonView(mContext);
-                personView.setName(employeeInfos.get(i).getName());
-                // 加载头像
-                String p5 = employeeInfos.get(i).hasAvatar() ? employeeInfo
-                        .getAvatar().getP5() : "";
-                if (!TextUtils.isEmpty(p5)) {
-                    final String urlTag = APIConst.getPhotoUrl(mContext, p5);
-                    Uri photoUri = Uri.parse(urlTag);
-
-                    personView.setUserImage(photoUri, employeeInfo.getName());
-                } else {
-                    personView.setIcon(ImageUtils
-                            .getDefaultBitmapByString(employeeInfos.get(i)
-                                    .getName()));
-                }
-
-                boolean flag = i == showNum - 1;
-
-                contentView.addView(personView);
-                if (flag) {
-                    break;
-                }
-            }
-        }
-
-        contentView.setLayoutParams(lp);
-        resultView.addView(contentView);
-        return resultView;
-    }
-
-    public static ImagePagerActivity.FileType getFileType(String fileName) {
-        if (fileName == null) {
-            fileName = "";
-        }
-        if (fileName.toLowerCase().endsWith(".jpg")) {
-            return ImagePagerActivity.FileType.IMAGE;
-        } else if (fileName.toLowerCase().endsWith(".jpg")) {
-            return ImagePagerActivity.FileType.IMAGE;
-        } else if (fileName.toLowerCase().endsWith(".png")) {
-            return ImagePagerActivity.FileType.IMAGE;
-        } else if (fileName.toLowerCase().endsWith(".jpeg")) {
-            return ImagePagerActivity.FileType.IMAGE;
-        } else if (fileName.toLowerCase().endsWith(".txt")) {
-            return ImagePagerActivity.FileType.TEXT;
-        } else if (fileName.toLowerCase().endsWith(".log")) {
-            return ImagePagerActivity.FileType.TEXT;
-        } else if (fileName.toLowerCase().endsWith(".doc")) {
-            return ImagePagerActivity.FileType.OFFICE;
-        } else if (fileName.toLowerCase().endsWith(".docx")) {
-            return ImagePagerActivity.FileType.OFFICE;
-        } else if (fileName.toLowerCase().endsWith(".ppt")) {
-            return ImagePagerActivity.FileType.OFFICE;
-        } else if (fileName.toLowerCase().endsWith(".pptx")) {
-            return ImagePagerActivity.FileType.OFFICE;
-        } else if (fileName.toLowerCase().endsWith(".xls")) {
-            return ImagePagerActivity.FileType.OFFICE;
-        } else if (fileName.toLowerCase().endsWith(".xlsx")) {
-            return ImagePagerActivity.FileType.OFFICE;
-        } else if (fileName.toLowerCase().endsWith(".pdf")) {
-            return ImagePagerActivity.FileType.PDF;
-        } else if (fileName.toLowerCase().endsWith(".mp3")) {
-            return ImagePagerActivity.FileType.AUDIO;
-        } else if (fileName.toLowerCase().endsWith(".mp4")) {
-            return ImagePagerActivity.FileType.VIDEO;
-        } else if (fileName.toLowerCase().endsWith(".apk")) {
-            return ImagePagerActivity.FileType.APK;
-        } else if (fileName.toLowerCase().endsWith(".amr")) {
-            return ImagePagerActivity.FileType.AUDIO;
-        }
-
-        return ImagePagerActivity.FileType.OTHER;
-    }
 
     public static long getTimeFromTimeString(String user_time) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");

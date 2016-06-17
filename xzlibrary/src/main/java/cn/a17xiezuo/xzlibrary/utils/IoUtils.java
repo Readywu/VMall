@@ -3,8 +3,6 @@ package cn.a17xiezuo.xzlibrary.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.chinaztt.fda.listlogic.RequestCallBack;
-import com.chinaztt.fda.spreference.SharedPreferencesHelper;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
