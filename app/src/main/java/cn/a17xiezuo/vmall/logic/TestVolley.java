@@ -10,6 +10,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
+import cn.a17xiezuo.vmall.entity.Person;
+import cn.a17xiezuo.xzlibrary.net.GsonRequest;
 import cn.a17xiezuo.xzlibrary.net.VMallVolley;
 
 /**
@@ -17,6 +19,7 @@ import cn.a17xiezuo.xzlibrary.net.VMallVolley;
  */
 public class TestVolley {
 
+    private static final String TAG = "TestVolley";
     private final Context context;
     private RequestQueue requestQueue;
 
@@ -40,5 +43,26 @@ public class TestVolley {
             }
         });
         requestQueue.add(jsonObjectRequest);
+
+
+        GsonRequest<Person> gsonRequest = new GsonRequest<Person>(
+                "http://www.mocky.io/v2/56c9d8c9110000c62f4e0bb0", Person.class,
+                new Response.Listener<Person>() {
+                    @Override
+                    public void onResponse(Person person) {
+                        Log.d(TAG, "first_name: " + person.getFirst_name());
+                        Log.d(TAG, "last_name: " + person.getLast_name());
+                        Log.d(TAG, "gender: " + person.getGender());
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, error.getMessage(), error);
+            }
+        });
+
+        //添加请求到队列
+        requestQueue.add(gsonRequest);
     }
 }
