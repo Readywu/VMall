@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import cn.a17xiezuo.vmall.logic.TestVolley;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        TestVolley testVolley = new TestVolley(this);
+        testVolley.getSimpleData();
+
     }
 
     @Override

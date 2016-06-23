@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cn.a17xiezuo.vmall.logic.TestVolley;
+
 /**
  * A placeholder fragment containing a simple view.
  */

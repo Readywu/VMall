@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 
-import cn.a17xiezuo.vmall.ui.activity.view.html5.HTML5CustomWebView;
+import cn.a17xiezuo.vmall.ui.view.html5.HTML5CustomWebView;
 
 
 public class HTML5Activity extends BaseActivity {

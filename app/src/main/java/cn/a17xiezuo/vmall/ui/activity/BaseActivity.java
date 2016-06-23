@@ -31,7 +31,7 @@ import java.util.Date;
 import cn.a17xiezuo.vmall.MainActivity;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.xzlibrary.common.Constants;
-import cn.a17xiezuo.xzlibrary.ui.view.swiperefresh.CSwipeRefreshLayout;
+import cn.a17xiezuo.xzlibrary.ui.widget.swiperefresh.CSwipeRefreshLayout;
 import cn.a17xiezuo.xzlibrary.utils.LogUtil;
 import cn.a17xiezuo.xzlibrary.utils.ScreenManager;
 /**
