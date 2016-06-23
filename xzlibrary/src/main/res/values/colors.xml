@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="transparent">#00000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="gray">#888888</color>
-    <color name="blue">#0066FF</color>
-    <color name="red">#FF0000</color>
-    <color name="black">#000000</color>
+
     <color name="middle_red">#e7abff</color>
     <color name="color_nav">#FFFFD9</color>
     <!-- androidColor -->
@@ -35,4 +30,234 @@
     <color name="color_unselected">#777777</color>
     <!--标签Tab选中的颜色-->
     <color name="color_selected">#1da8fe</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- actionbar style -->
+    <color name="actionbar_common_title">@color/black</color>
+    <color name="actionbar_common_background">#FFF7F7F7</color>
+    <color name="actionbar_common_menu">#FF16A7DE</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="purple">#9933FF</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#00FFFF</color>
+    <color name="contact_day">#16a7d1</color>
+    <color name="wechat_message_type">#16A7DE</color>
+    <color name="wechat_bottom_bg">#EBECEE</color>
+    <color name="wechat_bottom_dot_focus">#A1A1A1</color>
+    <color name="wechat_bottom_dot_normal">#CFCFCF</color>
+    <color name="green">#FF22A63B</color>
+    <color name="target_card_dynamic_time">#19ba7c</color>
+    <color name="darkgreen">#FF1d732e</color>
+    <color name="lightgray">#e7e7e7</color>
+    <color name="darkblue">#0075a9</color>
+    <color name="gray">#AFAFAF</color>
+    <color name="darkgray">#848484</color>
+    <color name="target_card_bg">#c8c7cc</color>
+    <color name="yellow">#F99503</color>
+    <color name="orange">#ed701d</color>
+    <color name="darkorange">#964c1c</color>
+    <color name="message_bg">#efeff4</color>
+    <color name="target_card_textcolor">#f44e4e</color>
+    <color name="target_card_layout">#ccefeff4</color>
+    <!--  -->
+    <color name="drop_menu_background">#52000000</color>
+    <color name="common_section_bar_background">#FFF0F0F0</color>
+    <color name="filter_item_menu_background">#FF2D2D2D</color>
+    <color name="today_color">#b51c31</color>
+    <color name="task_type_button_checked">#FF3D84E5</color>
+    <color name="task_type_button_normal">#FFEFEFEF</color>
+    <color name="task_type_button_text">#FF666666</color>
+    <color name="calendar_cell_text_color">#333333</color>
+    <color name="calendar_header_text_color">#4581D1</color>
+    <color name="calendar_background_color">#F8F8F8</color>
+    <color name="border">#4fa5d5</color>
+    <color name="border_light">#c5c5c5</color>
+    <color name="calendar_month_background">#EDEDED</color>
+    <color name="calendar_year_background">#F3F3F3</color>
+    <color name="calendar_month_text">#B8B8B8</color>
+    <color name="calendar_month_text_click">#4480D0</color>
+    <color name="calendar_year_text">#999999</color>
+    <color name="calendar_year_text_click">#333333</color>
+
+    <drawable name="scroll_cover">#ffffff</drawable>
+    <!-- List item color -->
+    <color name="list_item_record_group_background">#FFFCFCFC</color>
+    <color name="list_item_record_child_background">#FFFCFCFC</color>
+    <color name="list_divider5">#FFD6D6D6</color>
+    <color name="list_divider4">#FFD5D5D5</color>
+    <color name="list_divider3">#FFDBDBDB</color>
+    <color name="list_divider_2">#FF242424</color>
+    <color name="list_divider_new_style">#FFC8C8C8</color>
+    <color name="list_divider">#FFC8C8C8</color>
+    <color name="card_info_line_color">#d3d3d3</color>
+    <color name="title_background_second">#FFF0F0F0</color>
+    <color name="translucent_background">#AB000000</color>
+    <color name="attention_title_background">#FF262626</color>
+    <color name="attention_title_text">#FFFFFFFF</color>
+    <color name="attention_up_line">#FF2D2D2D</color>
+    <color name="attention_childs_text">#FFD7D7D7</color>
+    <color name="attention_group_text">#FF8C8C8C</color>
+    <color name="watch_child_text">#FFD2D2D2</color>
+    <color name="attention_childs_menu_background">#FF252525</color>
+    <color name="attention_childs_menu_btn_background">#FF171717</color>
+    <color name="attention_group_line">#FF191919</color>
+    <color name="audio_background">#F2F2F2</color>
+    <color name="login_button_background">#FF007BCC</color>
+    <color name="login_button_background_click">#FF0b3779</color>
+    <color name="wechat_chat_datetime">#FF8C8C8C</color>
+    <color name="wechat_chat_text_from">@color/black</color>
+    <color name="wechat_chat_text_to">@color/black</color>
+    <color name="calendarview_title_background">#FFDADADA</color>
+    <color name="calendarview_content_background">#FFDADADA</color>
+    <color name="calendarview_content_text">#FF333333</color>
+    <color name="record_name_text">#FF999999</color>
+    <color name="record_dropdown_click">#FFF89B29</color>
+    <color name="menu_selected_background">#FF7C7C7C</color>
+    <!-- alpha0.75 -->
+    <color name="record_selectdate_activity_background">#BF000000</color>
+    <color name="gridview_member_bg">#FF9E9E9E</color>
+    <color name="list_item_subtitle_large">#FF888888</color>
+    <color name="list_item_title">#FF333333</color>
+    <color name="common_title">#FFFFFFFF</color>
+    <color name="common_title_menu">#FFFFFFFF</color>
+    <color name="common_right_text_menu">#FFBAE0FA</color>
+    <color name="common_right_text_menu_disable">#5F094979</color>
+    <!--导航色-->
+    <color name="common_title_background">#FF16a7de</color>
+    <color name="common_title_bottom_background">#FFF8F8F8</color>
+
+    <color name="common_page_background">@color/white</color>
+    <color name="common_section_bg">#FFF0F0F0</color>
+    <color name="common_text_title">#FF333333</color>
+    <color name="common_section_title">#FF666666</color>
+    <color name="common_wechat_info_background">@color/message_bg</color>
+    <!--日报姓名蓝-->
+    <color name="blog_name_color">#576b95</color>
+    <color name="common_group_title">#FF235FBA</color>
+    <color name="common_text_content">#FF999999</color>
+    <color name="common_text_disable">#FF999999</color>
+    <color name="common_text_content_hint">#FF999999</color>
+    <color name="filter_title_background">#FF262626</color>
+    <color name="contacts_item_background">@color/calendar_year_background</color>
+    <color name="black_transparent">#33000000</color>
+    <color name="help_view">#ff404040</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="flow_status_agree">#FF54C947</color>
+    <color name="flow_status_handle">#FFA0887F</color>
+    <color name="flow_status_confirm">#FFC5C5C5</color>
+    <color name="flow_status_finished">#FFC5C5C5</color>
+    <color name="flow_status_reject">#FFFD5458</color>
+    <color name="flow_status_create">#FF2E75CF</color>
+    <color name="watch_child_item_background">#FF2D2D2D</color>
+    <color name="watch_child_item_line">#FF282828</color>
+    <color name="common_enable_text">#FF999999</color>
+    <color name="common_unread_status">@color/red</color>
+    <color name="common_newresponse_status">@color/green</color>
+    <color name="common_finished_status">#FF666666</color>
+    <color name="common_invitation_background">#FF5BB65B</color>
+    <color name="white_alpha60">#43FFFFFF</color>
+    <color name="common_line_bar_background">#FFEEEEEE</color>
+    <color name="month_clicked_background_color">#FFFFFFFF</color>
+    <color name="mini_month_today_outline_color">#FF000000</color>
+    <color name="top_bottom_container_background">#F7F7F7</color>
+    <color name="main_theme_color">#FF3830</color>
+    <color name="divider_color">#B2B2B2</color>
+    <color name="sunday_or_saturday_color">#B8B8B8</color>
+    <color name="month_day_divider_color">#CCCCCC</color>
+    <color name="month_other_day_color">#000000</color>
+    <color name="month_day_selected">#34aadc</color>
+    <color name="month_day_normal_text">#666666</color>
+    <color name="month_day_no_normal_text">#cdcdcd</color>
+    <color name="month_week_of_year_click">#f58500</color>
+    <color name="month_week_of_year">#ffdc7d</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Calendar agenda -->
+    <color name="hour_bg">#ffffff</color>
+    <color name="event_area_bg">#fff7f7</color>
+    <color name="hour_text">#333333</color>
+    <color name="event_bg">#99f7e8f8</color>
+    <color name="event_bg_noalpha">#FFf7e8f8</color>
+    <color name="event_text">#333333</color>
+    <color name="event_frame_line">#da94dd</color>
+    <color name="hour_time_line">#c8c8c8</color>
+    <color name="current_time_line">#eb7474</color>
+    <color name="event_frame_no_permission_line">#D3D3D3</color>
+    <color name="event_bg_no_permission">#99F3F3F3</color>
+    <color name="msg_center_title">#576b95</color>
+    <color name="msg_center_content">#afafaf</color>
+    <color name="subordinate_custom_color">#aa89bd</color>
+    <color name="subordinate_doc_color">#5e97f6</color>
+    <color name="subordinate_flow_color">#80c269</color>
+    <color name="subordinate_task_color">#ff943d</color>
+    <color name="sidebar_text_color">#888888</color>
+    <color name="sidebar_text_light_color">#aa9b9b9b</color>
+
+
+    <drawable name="transparent_background">#00000000</drawable>
+    <drawable name="transparent_black_background">#20FFFFFF</drawable>
+    <color name="popup_item_text">#4f4f4f</color>
+
+    <color name="popup_normal">#fff</color>
+    <color name="popup_press">#ff0</color>
+    <color name="popup_focue">#666</color>
+
+    <color name="ws_snack_bkgnd">#323232</color>
+    <color name="ws_snack_alert_bkgnd">#ffff4444</color>
+    <color name="ws_transparent">#00000000</color>
+    <color name="ws_dim_white">#20FFFFFF</color>
+    <color name="ws_button_text_color">#FB6541</color>
+    <color name="search_history_text_color">#63b8ff</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+
+    <color name="common_list_swipe_delete">#f1542f</color>
+
+    <color name="lv_msg_bottom">#e5e5e5</color>
+    <color name="document_list_divider">#FFC8C8C8</color>
+    <color name="process_button_blue_pressed">#ff0099cc</color>
+    <color name="process_button_blue_normal">#ff33b5e5</color>
+    <color name="process_button_green_complete">#ff99cc00</color>
+    <color name="process_button_purple_progress">#ffaa66cc</color>
+    <color name="process_button_red_error">#ffff4444</color>
+    <color name="process_button_holo_blue_bright">#ff00ddff</color>
+    <color name="process_button_holo_green_light">#ff99cc00</color>
+    <color name="process_button_holo_orange_light">#ffffbb33</color>
+    <color name="process_button_holo_red_light">#ffff4444</color>
+    <color name="appgrouptitle">#efeff4</color>
+    <color name="bg_contact_invite">#81c068</color>
+
+    <color name="item_crash_selected">#5a000000</color>
+    <color name="item_crash">#00000000</color>
+    <color name="trace_text">#FF6B68</color>
+    <color name="my_fault">#E040FB</color>
+
+    <color name="refresh_color_one">#0e86b3</color>
+    <color name="refresh_color_two">#92e1ff</color>
+    <color name="refresh_color_three">#0e86b3</color>
+    <color name="refresh_color_four">#92e1ff</color>
+    <color name="griditems_bg">#ffe8ecef</color>
+    <color name="commo_text_color">#ff333333</color>
+    <color name="line">#7fd3dde6</color>
+
+    <color name="swipe_menu_color_1">@color/red</color>
+    <color name="swipe_menu_color_2">#FFc7c7cc</color>
+    <color name="swipe_menu_color_3">#FF9bc63e</color>
+    <color name="swipe_menu_color_4">#FF3a91da</color>
+    <color name="task_item_unfinished_color">#32add4</color>
+    <color name="task_item_finished_color">#8ac474</color>
+
+    <color name="filter_fragment_line_color">#FF242424</color>
+
+    <color name="workflow_common_line_color">#FFC7C7CB</color>
+    <color name="workflow_common_interval_color">#FFEFEFF5</color>
+    <color name="custom_view_label_color">#FF333333</color>
+    <color name="custom_view_text_color">#FF999999</color>
 </resources>

@@ -1,4 +1,4 @@
-package cn.a17xiezuo.xzlibrary.ui.view;
+package cn.a17xiezuo.vmall.ui.widget;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.text.style.ClickableSpan;
 import android.view.View;
 
-
+import cn.a17xiezuo.vmall.R;
+import cn.a17xiezuo.vmall.ui.activity.HTML5Activity;
 import cn.a17xiezuo.xzlibrary.common.Constants;
-import cn.a17xiezuo.xzlibrary.ui.html5.HTML5WebViewCustomAD;
 
 
 public class MyURLSpan extends ClickableSpan {
@@ -24,7 +24,7 @@ public class MyURLSpan extends ClickableSpan {
     @Override
     public void onClick(View widget) {
         Intent intent = new Intent();
-        intent.setClass(mContext, HTML5WebViewCustomAD.class);
+        intent.setClass(mContext, HTML5Activity.class);
         intent.putExtra(Constants.EXTRA_URL, mUrl);
         mContext.startActivity(intent);
         ((Activity) mContext).overridePendingTransition(

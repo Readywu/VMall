@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2015. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/activity_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent" />
+
+    <!--style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"-->
+    <!--<ProgressBar-->
+    <!--android:id="@+id/activity_bar"-->
+    <!--style="@style/Widget.Holo.ProgressBar.Horizontal.Teams"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:visibility="gone"/>-->
+    <cn.a17xiezuo.xzlibrary.ui.view.swiperefresh.CSwipeRefreshLayout
+        android:id="@+id/activity_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></ScrollView>
+    </cn.a17xiezuo.xzlibrary.ui.view.swiperefresh.CSwipeRefreshLayout>
+</RelativeLayout>

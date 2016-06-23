@@ -1,21 +1,17 @@
-package cn.a17xiezuo.xzlibrary.ui.activity;
+package cn.a17xiezuo.vmall.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -27,18 +23,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.support.v4.app.FragmentActivity;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
-
-import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
+import cn.a17xiezuo.vmall.MainActivity;
+import cn.a17xiezuo.vmall.R;
+import cn.a17xiezuo.xzlibrary.common.Constants;
 import cn.a17xiezuo.xzlibrary.ui.view.swiperefresh.CSwipeRefreshLayout;
+import cn.a17xiezuo.xzlibrary.utils.LogUtil;
 import cn.a17xiezuo.xzlibrary.utils.ScreenManager;
-
-
 /**
  * Created by wuyunan on 13-8-12.
  */
@@ -58,7 +53,6 @@ public abstract class BaseActivity extends FragmentActivity {
     int aType;
     int receiveType;
     Dialog dialog;
-    private SyncDataServiceConnection mServiceConnection;
     private Intent mService;
     private CSwipeRefreshLayout mProgressBar;
 
@@ -73,12 +67,12 @@ public abstract class BaseActivity extends FragmentActivity {
 
         mContext = BaseActivity.this;
         // messageReceiver = new UnReadPushMessageReceiver();
-        mLoginUserId = SharedPreferencesUtil.getLoginUserId(mContext);
-        if (!(SharedPreferencesUtil.isAudoLoginIn(this) && !TextUtils
-                .isEmpty(SharedPreferencesUtil.getSessionId(this)))) {
-            goLoginActivity();
-        }
-        bindDeviceService();
+//        mLoginUserId = SharedPreferencesUtil.getLoginUserId(mContext);
+//        if (!(SharedPreferencesUtil.isAudoLoginIn(this) && !TextUtils
+//                .isEmpty(SharedPreferencesUtil.getSessionId(this)))) {
+//            goLoginActivity();
+//        }
+//        bindDeviceService();
         if (getActionBar() != null) {
             getActionBar().setDisplayHomeAsUpEnabled(false);
             getActionBar().setHomeButtonEnabled(true);
@@ -185,19 +179,19 @@ public abstract class BaseActivity extends FragmentActivity {
         getActionBar().setIcon(R.drawable.ic_actionbar_back);
     }
 
-    private void bindDeviceService() {
-        mServiceConnection = new SyncDataServiceConnection();
+//    private void bindDeviceService() {
+//        mServiceConnection = new SyncDataServiceConnection();
+//
+//        mService = new Intent(mContext, SyncDataService.class);
+//
+//        mContext.bindService(mService, mServiceConnection,
+//                Context.BIND_AUTO_CREATE);
+//    }
 
-        mService = new Intent(mContext, SyncDataService.class);
-
-        mContext.bindService(mService, mServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindDeviceService() {
-
-        mContext.unbindService(mServiceConnection);
-    }
+//    private void unbindDeviceService() {
+//
+//        mContext.unbindService(mServiceConnection);
+//    }
 
     protected void hideKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) mContext
@@ -225,23 +219,23 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        JPushInterface.onPause(this);
-        StatService.onPause(this);
+//        JPushInterface.onPause(this);
+//        StatService.onPause(this);
         isBackground = false;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        JPushInterface.onResume(this);
-        StatService.onResume(this);
+//        JPushInterface.onResume(this);
+//        StatService.onResume(this);
         isBackground = true;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindDeviceService();
+//        unbindDeviceService();
         // unRegister();
     }
 
@@ -275,9 +269,9 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     public void goLoginActivity() {
-        Intent intent = new Intent(mContext, BootandLoginActivity.class);
-        intent.putExtra(Constants.REQUEST_ANIMATOR, false);
-        startActivity(intent);
+//        Intent intent = new Intent(mContext, BootandLoginActivity.class);
+//        intent.putExtra(Constants.REQUEST_ANIMATOR, false);
+//        startActivity(intent);
         finish();
     }
 

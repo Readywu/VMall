@@ -1,4 +1,4 @@
-package cn.a17xiezuo.xzlibrary.ui.html5;
+package cn.a17xiezuo.vmall.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,19 +10,10 @@ import android.view.MotionEvent;
 import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 
-import com.chinaztt.fda.ui.base.BaseActivity;
+import cn.a17xiezuo.vmall.ui.activity.view.html5.HTML5CustomWebView;
 
-/**
- * 当前类注释:
- * 项目名：FastDev4Android
- * 包名：com.chinaztt.fda.html5
- * 作者：江清清 on 15/11/06 08:59
- * 邮箱：jiangqqlmj@163.com
- * QQ： 781931404
- * 公司：江苏中天科技软件技术有限公司
- */
 
-public class HTML5WebViewCustomAD extends BaseActivity {
+public class HTML5Activity extends BaseActivity {
     private HTML5CustomWebView mWebView;
     //http://www.zttmall.com/Wapshop/Topic.aspx?TopicId=18
     private String ad_url = "http://www.zttmall.com/Wapshop/Topic.aspx?TopicId=18";
@@ -31,7 +22,7 @@ public class HTML5WebViewCustomAD extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWebView = new HTML5CustomWebView(this, HTML5WebViewCustomAD.this, title, ad_url);
+        mWebView = new HTML5CustomWebView(this, HTML5Activity.this, title, ad_url);
         mWebView.setDownloadListener(new DownloadListener() {
             @Override
             public void onDownloadStart(String url, String userAgent,
@@ -135,9 +126,9 @@ public class HTML5WebViewCustomAD extends BaseActivity {
         public void showProduct(String productId) {
             if (productId != null) {
                 //进行跳转商品详情
-                showToastMsgShort("点击的商品的ID为:" + productId);
+                showMessage("点击的商品的ID为:" + productId);
             } else {
-                showToastMsgShort("商品ID为空!");
+                showMessage("商品ID为空!");
             }
         }
     }

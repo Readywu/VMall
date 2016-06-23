@@ -16,7 +16,7 @@ import android.util.DisplayMetrics;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.chinaztt.fda.application.FDApplication;
+
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -519,73 +519,7 @@ public class StrUtils {
         return manufacturer;
     }
 
-    // 获取ip地区
-    public static String getIpCountry() {
-        String ipCountry = "460";
-        try {
-            TelephonyManager mTelephonyManager = (TelephonyManager) FDApplication
-                    .getInstance().getSystemService(Context.TELEPHONY_SERVICE);
-            if (mTelephonyManager != null) {
-                String IMSI = mTelephonyManager.getSubscriberId();
-                if (IMSI != null && !IMSI.equals("") && IMSI.length() >= 3) {
-                    // IMSI号前面3位460是国家，紧接着后面2位00 02是中国移动，01是中国联通，03是中国电信。
-                    ipCountry = IMSI.substring(0, 3);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ipCountry;
-    }
 
-    // 获取ip运营商
-    public static String getIpName() {
-        String ipName = null;
-        try {
-            TelephonyManager mTelephonyManager = (TelephonyManager) FDApplication
-                    .getInstance().getSystemService(Context.TELEPHONY_SERVICE);
-            if (mTelephonyManager != null) {
-                String IMSI = mTelephonyManager.getSubscriberId();
-                if (IMSI != null && !IMSI.equals("") && IMSI.length() >= 5) {
-                    // IMSI号前面3位460是国家，紧接着后面2位00 02是中国移动，01是中国联通，03是中国电信。
-                    ipName = IMSI.substring(3, 5);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ipName;
-    }
-
-    // 获取ip基站
-    public static String getIpBaseStation() {
-        TelephonyManager telMgr = (TelephonyManager) FDApplication
-                .getInstance().getSystemService(Context.TELEPHONY_SERVICE);
-        int cid = 0;
-        int lac = 0;
-        try {
-            if (telMgr != null) {
-                GsmCellLocation gc = (GsmCellLocation) telMgr.getCellLocation();
-                if (null == gc) {
-                    return "0_0";
-                }
-                cid = gc.getCid();
-                lac = gc.getLac();
-            }
-        } catch (Exception e) {
-            if (telMgr != null) {
-                CdmaCellLocation location = (CdmaCellLocation) telMgr
-                        .getCellLocation();
-                if (null == location) {
-                    return "0_0";
-                }
-                lac = location.getNetworkId();
-                cid = location.getBaseStationId();
-                cid /= 16;
-            }
-        }
-        return lac + "_" + cid;
-    }
 
     // 获取包名
     public static String getPackageName(Activity activity) {
@@ -600,12 +534,7 @@ public class StrUtils {
         return packageName;
     }
 
-    // 获取Android_id
-    public static String getAndroidId() {
 
-        return Settings.Secure.getString(FDApplication.getInstance()
-                .getContentResolver(), Settings.Secure.ANDROID_ID);
-    }
 
     // 判断设备是否越狱
     public static boolean getIsJailBreak() {
@@ -684,27 +613,6 @@ public class StrUtils {
         return result;
     }
 
-    // 获取用户的IPd
-    public static int getIpAddress() {
-        int ipAddress = 0;
-        WifiManager wifiManager = (WifiManager) FDApplication
-                .getInstance().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        if (wifiInfo == null || wifiInfo.equals("")) {
-            return ipAddress;
-        } else {
-            ipAddress = wifiInfo.getIpAddress();
-        }
-        return ipAddress;
-    }
-
-    // 获取用户设备IP
-    public static String getUserIp() {
-        int ipAddress = getIpAddress();
-        return String.format("%d.%d.%d.%d", (ipAddress & 0xff),
-                (ipAddress >> 8 & 0xff), (ipAddress >> 16 & 0xff),
-                (ipAddress >> 24 & 0xff));
-    }
 
     // 获取时区
     public static String getTimeArea() {

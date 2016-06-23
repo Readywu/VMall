@@ -13,11 +13,19 @@ public class VMallApplication extends Application {
 
     private RefWatcher mRefWatcher;
 
+    private static VMallApplication instance;
+
+    public static VMallApplication getInstance() {
+        return instance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        this.instance = this;
         LeakCanary.install(this);
 
     }
+
+
 }

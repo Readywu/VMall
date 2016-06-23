@@ -1,7 +1,6 @@
 package cn.a17xiezuo.xzlibrary.utils;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
@@ -9,48 +8,23 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.res.Resources.NotFoundException;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.telephony.TelephonyManager;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
 import android.util.Base64;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.sql.Time;
@@ -61,14 +35,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.crypto.Cipher;
 
 import cn.a17xiezuo.xzlibrary.common.Constants;
-import cn.a17xiezuo.xzlibrary.ui.view.MyURLSpan;
+
 
 public class Utility {
 
@@ -888,97 +861,6 @@ public class Utility {
         return false;
     }
 
-    /**
-     * @param mContext
-     * @param textView
-     * @param value
-     */
-    public static void setTextUrlReadable(Context mContext, TextView textView,
-                                          String value) {
-        textView.setAutoLinkMask(Linkify.WEB_URLS);
-        textView.setText(value);
-
-        CharSequence content = textView.getText();
-
-        SpannableStringBuilder builder = SpannableStringBuilder
-                .valueOf(content);
-
-        URLSpan[] spans = builder.getSpans(0, content.length(), URLSpan.class);
-
-        if (spans != null && spans.length > 0) {
-
-            int start = 0;
-
-            int end = 0;
-
-            for (URLSpan span : spans) {
-
-                start = builder.getSpanStart(span);
-
-                end = builder.getSpanEnd(span);
-
-                // to replace each link span with customized ClickableSpan
-
-                builder.removeSpan(span);
-
-                builder.setSpan(new MyURLSpan(mContext, span.getURL()
-                                .toString()), start, end,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            }
-            textView.setAutoLinkMask(0);
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
-            textView.setText(builder);
-        }
-
-    }
-
-    public static void setTextUrlReadable(Context mContext, TextView textView,
-                                          String value, ArrayList<Map<String, Object>> userList) {
-        setTextUrlReadable(mContext, textView, value, userList, "7888a9");
-    }
-
-    public static void setTextUrlReadable(Context mContext, TextView textView,
-                                          String value, ArrayList<Map<String, Object>> userList, String color) {
-
-        textView.setAutoLinkMask(Linkify.WEB_URLS);
-        textView.setText(value);
-
-        CharSequence content = textView.getText();
-
-        SpannableStringBuilder builder = SpannableStringBuilder
-                .valueOf(content);
-
-        URLSpan[] spans = builder.getSpans(0, content.length(), URLSpan.class);
-
-        if (spans != null && spans.length > 0) {
-
-            int start = 0;
-
-            int end = 0;
-
-            for (URLSpan span : spans) {
-
-                start = builder.getSpanStart(span);
-
-                end = builder.getSpanEnd(span);
-
-                // to replace each link span with customized ClickableSpan
-
-                builder.removeSpan(span);
-
-                builder.setSpan(new MyURLSpan(mContext, span.getURL()
-                                .toString()), start, end,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-            }
-        }
-
-
-        textView.setAutoLinkMask(0);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setText(builder);
-    }
 
     public static boolean isEmail(String email) {
         String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";

@@ -2,5 +2,117 @@
     <!-- Example customization of dimensions originally defined in res/values/dimens.xml
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
-    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="common_titlebar_height">48dp</dimen>
+    <dimen name="common_titlebar_height_2x">96dp</dimen>
+    <dimen name="common_bottom_height">48dp</dimen>
+    <dimen name="common_section_height">48dp</dimen>
+    <dimen name="common_field_height">48dp</dimen>
+    <dimen name="common_text_size_32">16sp</dimen>
+    <dimen name="common_text_size_28">14sp</dimen>
+    <dimen name="common_text_size_26">13sp</dimen>
+    <dimen name="common_text_size_24">12sp</dimen>
+    <dimen name="common_text_size_30">15sp</dimen>
+    <dimen name="common_text_size_36">18sp</dimen>
+    <dimen name="commen_group_text_height">33dp</dimen>
+    <dimen name="commen_list_item_height">48dp</dimen>
+    <dimen name="commen_listitem_height">60dp</dimen>
+    <dimen name="commen_list_group_height">65dp</dimen>
+    <dimen name="common_list_item_height_twoline">60dp</dimen>
+    <dimen name="common_list_item_height_twoline_header">48dp</dimen>
+    <dimen name="common_list_divider_height">0.5dp</dimen>
+    <dimen name="common_align_margin">30dp</dimen>
+    <dimen name="right_margin">10dp</dimen>
+    <dimen name="left_margin">10dp</dimen>
+    <dimen name="right_margin_4">15dp</dimen>
+    <dimen name="left_margin_4">15dp</dimen>
+    <dimen name="right_margin_2">20dp</dimen>
+    <dimen name="left_margin_2">20dp</dimen>
+    <dimen name="right_margin_3">50dp</dimen>
+    <dimen name="left_margin_3">30dp</dimen>
+    <dimen name="line_height">5dp</dimen>
+    <dimen name="group_text_height">30dp</dimen>
+    <dimen name="calendar_cell_height">35dp</dimen>
+    <dimen name="calendar_height">300dp</dimen>
+    <dimen name="calendar_month_height">33dp</dimen>
+    <dimen name="calendar_line_height">5dp</dimen>
+    <dimen name="calendar_year_height">45dp</dimen>
+    <dimen name="attention_title_image_width_and_height">30dp</dimen>
+    <dimen name="login_button_height">40dp</dimen>
+    <dimen name="login_login_text_height">45dp</dimen>
+    <dimen name="calendarview_calendar_height_portrait">335dp</dimen>
+    <dimen name="calendarview_listitem_height_portrait">45dp</dimen>
+    <dimen name="attention_tophidegroup_height">@dimen/right_margin_3</dimen>
+    <dimen name="image_height_style_large">45dp</dimen>
+    <dimen name="wechat_message_user_icon">40dp</dimen>
+    <dimen name="customer_detail_popup_width">95dp</dimen>
+    <dimen name="customer_detail_common_min_height">40dp</dimen>
+    <dimen name="slidingmenu_offset">40dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="common_image_width_and_height">30dp</dimen>
+    <dimen name="common_activation_left_width">60dp</dimen>
+    <dimen name="left_info_header_height">180dp</dimen>
+    <dimen name="left_info_header_photo_height">100dp</dimen>
+    <dimen name="left_info_header_photocircle_height">150dp</dimen>
+    <dimen name="calendar_month_week_height">20dip</dimen>
+    <dimen name="calendar_month_day_height">40dip</dimen>
+    <!-- Calendar agenda -->
+    <dimen name="event_margin">4dip</dimen>
+    <dimen name="event_allday_text_left_margin">10dip</dimen>
+    <dimen name="event_allday_height">20dip</dimen>
+    <dimen name="first_hour_offset">13dip</dimen>
+    <dimen name="hour_hour_height">40dip</dimen>
+    <dimen name="hour_width">45dip</dimen>
+    <dimen name="hour_left_margin">7dip</dimen>
+    <dimen name="hour_text_height">12dip</dimen>
+    <dimen name="agenda_cell_height">60dip</dimen>
+    <dimen name="currenttime_line_trangle_width">8dip</dimen>
+
+    <!-- Form view  dimens -->
+    <dimen name="form_label_width">60dip</dimen>
+    <dimen name="form_item_height">44dip</dimen>
+    <dimen name="form_label_nessesary_width">5dip</dimen>
+    <dimen name="size_default_height">150dip</dimen>
+
+
+    <dimen name="ws_horizontal_margin">24dp</dimen>
+    <dimen name="ws_vertical_margin_top">16dp</dimen>
+    <dimen name="ws_vertical_margin_bottom">16dp</dimen>
+
+    <dimen name="side_bar_textsize">13sp</dimen>
+
+    <!--3.0-->
+    <dimen name="add_margin_top_m1">25dp</dimen>
+    <dimen name="add_margin_top_m2">50dp</dimen>
+    <dimen name="common_list_divider_margin_left">59dp</dimen>
+    <dimen name="common_list_icon_margin_left">17dp</dimen>
+    <dimen name="common_list_icon_margin_right">10dp</dimen>
+    <dimen name="common_list_icon_size">32dp</dimen>
+    <dimen name="common_list_small_icon_size">28dp</dimen>
+    <dimen name="common_list_item_height">58dp</dimen>
+    <dimen name="common_list_swipe_width">57dp</dimen>
+
+    <dimen name="android_spaces">8dp</dimen>
+    <dimen name="android_spaces_large">16dp</dimen>
+    <dimen name="android_spaces_small">4dp</dimen>
+
+    <dimen name="lv_msg_bottom">1dp</dimen>
+
+    <dimen name="remember_item_height">45dp</dimen>
+    <dimen name="detial_header_height">60dp</dimen>
+    <dimen name="detial_header_title_toppadding">13dp</dimen>
+    <dimen name="detial_header_creater_toppadding">7dp</dimen>
+    <dimen name="corner_radius">2dp</dimen>
+    <dimen name="layer_padding">3dp</dimen>
+
+    <dimen name="create_btn_height">40dp</dimen>
+    <dimen name="work_flow_line_height">0.5dp</dimen>
+    <dimen name="work_flow_interval_height">15dp</dimen>
+
+    <dimen name="shareout_dialog_margin_left">10dp</dimen>
+    <dimen name="shareout_dialog_item_height">48dp</dimen>
 </resources>

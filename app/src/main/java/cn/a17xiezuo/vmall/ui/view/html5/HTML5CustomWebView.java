@@ -1,4 +1,4 @@
-package cn.a17xiezuo.xzlibrary.ui.html5;
+package cn.a17xiezuo.vmall.ui.view.html5;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -26,9 +26,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import cn.a17xiezuo.vmall.application.VMallApplication;
 import cn.a17xiezuo.xzlibrary.utils.StrUtils;
 
-
+import cn.a17xiezuo.xzlibrary.R;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -285,10 +286,10 @@ public class HTML5CustomWebView extends WebView {
                     //如果另外的应用程序WebView，我们可以进行重用
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra(Browser.EXTRA_APPLICATION_ID,
-                            FDApplication.getInstance()
+                            VMallApplication.getInstance()
                                     .getApplicationContext().getPackageName());
                     try {
-                        FDApplication.getInstance().startActivity(intent);
+                        VMallApplication.getInstance().startActivity(intent);
                         return true;
                     } catch (ActivityNotFoundException ex) {
                     }

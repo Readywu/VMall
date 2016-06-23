@@ -1,7 +1,7 @@
 package cn.a17xiezuo.xzlibrary.common;
 
 
-import java.util.ArrayList;
+import cn.a17xiezuo.xzlibrary.R;
 
 public class Constants {
 
@@ -534,7 +534,9 @@ public class Constants {
     // android.R.color.holo_orange_light,
     //
     // android.R.color.holo_red_light };
-
+    public static int colorRes[] = {R.color.refresh_color_one,
+            R.color.refresh_color_two, R.color.refresh_color_three,
+            R.color.refresh_color_four};
 
     public static enum TankExpandType {
         ALL, TODAY, TOMORROW, FUTURE, REMEMBER, OVERTIME
