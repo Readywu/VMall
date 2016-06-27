@@ -17,44 +17,34 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-import cn.a17xiezuo.xzlibrary.App;
 import cn.a17xiezuo.xzlibrary.cache.LruBitmapCache;
+import cn.a17xiezuo.xzlibrary.net.okhttp.OkHttp3Stack;
 import okhttp3.OkHttpClient;
 
 /**
  * Created by Allen Lin on 2016/02/18.
  */
-public class VolleyManager {
-    private static VolleyManager mVolleyManager = null;
+public enum VolleyManager {
+    INSTANCE;
+
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
 
-    private static class VolleyManagerHolder {
-        private static final VolleyManager INSTANCE = new VolleyManager(App.getContext());
-    }
+
 
     /**
      * @param context
      */
-    private VolleyManager(Context context) {
-
-        mRequestQueue = Volley.newRequestQueue(context, new OkHttpStack(new OkHttpClient()));
+    public void init(Context context) {
+        OkHttpClient okClient = new OkHttpClient.Builder().build();
+        mRequestQueue = Volley.newRequestQueue(context, new OkHttp3Stack(okClient));
 
         mImageLoader = new ImageLoader(mRequestQueue,
                 new LruBitmapCache(context));
     }
 
-    /**
-     * 单例模式（静态内部类）
-     *
-     * @return VolleyManager instance
-     */
-    public static VolleyManager newInstance() {
-        return VolleyManagerHolder.INSTANCE;
 
-    }
-
-    private <T> Request<T> add(Request<T> request) {
+    public <T> Request<T> add(Request<T> request) {
         return mRequestQueue.add(request);//添加请求到队列
     }
 

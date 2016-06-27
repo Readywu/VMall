@@ -2,6 +2,7 @@ package cn.a17xiezuo.xzlibrary;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 /**
  * Created by wuyunan on 16/6/23.
@@ -13,6 +14,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         sContext = getApplicationContext();
+        Log.d("app", "dddd");
     }
 
     public static Context getContext() {

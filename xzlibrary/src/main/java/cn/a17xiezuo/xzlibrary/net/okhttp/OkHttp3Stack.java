@@ -1,4 +1,4 @@
-package cn.a17xiezuo.xzlibrary.net;
+package cn.a17xiezuo.xzlibrary.net.okhttp;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -54,11 +54,11 @@ import okhttp3.ResponseBody;
  * OkHttp backed {@link com.android.volley.toolbox.HttpStack HttpStack} that
  * does not use okhttp-urlconnection
  */
-public class OkHttpStack implements HttpStack {
+public class OkHttp3Stack implements HttpStack {
 
     private final OkHttpClient mClient;
 
-    public OkHttpStack(OkHttpClient client) {
+    public OkHttp3Stack(OkHttpClient client) {
         this.mClient = client;
     }
 

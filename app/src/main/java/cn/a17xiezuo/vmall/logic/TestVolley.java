@@ -3,7 +3,6 @@ package cn.a17xiezuo.vmall.logic;
 import android.content.Context;
 import android.util.Log;
 
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -12,7 +11,7 @@ import org.json.JSONObject;
 
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.xzlibrary.net.GsonRequest;
-import cn.a17xiezuo.xzlibrary.net.VMallVolley;
+import cn.a17xiezuo.xzlibrary.net.VolleyManager;
 
 /**
  * Created by wuyunan on 16/6/23.
@@ -21,11 +20,9 @@ public class TestVolley {
 
     private static final String TAG = "TestVolley";
     private final Context context;
-    private RequestQueue requestQueue;
 
     public TestVolley(Context context) {
         this.context = context;
-        requestQueue = VMallVolley.getInstance(context);
     }
 
 
@@ -42,7 +39,8 @@ public class TestVolley {
                 Log.e("mTAG", error.getMessage(), error);
             }
         });
-        requestQueue.add(jsonObjectRequest);
+
+        VolleyManager.INSTANCE.add(jsonObjectRequest);
 
 
         GsonRequest<Person> gsonRequest = new GsonRequest<Person>(
@@ -63,6 +61,6 @@ public class TestVolley {
         });
 
         //添加请求到队列
-        requestQueue.add(gsonRequest);
+        VolleyManager.INSTANCE.add(gsonRequest);
     }
 }
