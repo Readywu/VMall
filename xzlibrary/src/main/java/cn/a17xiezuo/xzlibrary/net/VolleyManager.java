@@ -9,74 +9,69 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Map;
 
-import cn.a17xiezuo.xzlibrary.cache.LruBitmapCache;
 import cn.a17xiezuo.xzlibrary.net.okhttp.OkHttp3Stack;
+import cn.a17xiezuo.xzlibrary.net.request.ByteRequest;
+import cn.a17xiezuo.xzlibrary.net.request.GsonRequest;
+import cn.a17xiezuo.xzlibrary.net.request.JsonArrayRequest;
+import cn.a17xiezuo.xzlibrary.net.request.JsonObjectRequest;
 import okhttp3.OkHttpClient;
 
 /**
  * Created by Allen Lin on 2016/02/18.
  */
-public enum VolleyManager {
-    INSTANCE;
+public class VolleyManager implements IHttpClient {
+    //INSTANCE;
 
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
 
+    private static VolleyManager INSTANCE;
+    private final Context mContext;
+    private static final int[] sLock = new int[0];
 
+    private VolleyManager(Context context) {
+        mContext = context;
+        mRequestQueue = Volley.newRequestQueue(context,
+                new OkHttp3Stack(new OkHttpClient()));
+    }
 
     /**
+     * 这里使用Application的Context
+     *
      * @param context
-     */
-    public void init(Context context) {
-        OkHttpClient okClient = new OkHttpClient.Builder().build();
-        mRequestQueue = Volley.newRequestQueue(context, new OkHttp3Stack(okClient));
-
-        mImageLoader = new ImageLoader(mRequestQueue,
-                new LruBitmapCache(context));
-    }
-
-
-    public <T> Request<T> add(Request<T> request) {
-        return mRequestQueue.add(request);//添加请求到队列
-    }
-
-    /**
-     * @param tag
-     * @param url
-     * @param listener
-     * @param errorListener
      * @return
      */
-    public StringRequest StrRequest(Object tag, String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-        StringRequest request = new StringRequest(url, listener, errorListener);
-        request.setTag(tag);
-        add(request);
-        return request;
+    public static VolleyManager getInstance(Context context) {
+        if (null == INSTANCE) {
+            synchronized (sLock) {
+                if (null == INSTANCE) {
+                    INSTANCE = new VolleyManager(context);
+                }
+            }
+        }
+        return INSTANCE;
     }
 
+
     /**
-     * @param tag
-     * @param method
-     * @param url
-     * @param listener
-     * @param errorListener
-     * @return
+     * 添加请求
+     *
+     * @param request
      */
-    public StringRequest StrRequest(Object tag, int method, String url, Response.Listener<String> listener,
-                                    Response.ErrorListener errorListener) {
-        StringRequest request = new StringRequest(method, url, listener, errorListener);
-        request.setTag(tag);
-        add(request);
-        return request;
+    public void addRequest(Request request, Object tag) {
+        if (tag != null) {
+            request.setTag(tag);
+        }
+        mRequestQueue.add(request);
     }
+
 
     /**
      * ImageRequest
@@ -97,99 +92,49 @@ public enum VolleyManager {
         ImageRequest request = new ImageRequest(url, listener, maxWidth, maxHeight, scaleType,
                 decodeConfig, errorListener);
         request.setTag(tag);
-        add(request);
+        addRequest(request, tag);
         return request;
     }
 
-    /**
-     * ImageLoader 图片默认大小
-     *
-     * @param imageView
-     * @param imgViewUrl
-     * @param defaultImageResId
-     * @param errorImageResId
-     */
-    public void ImageLoaderRequest(ImageView imageView, String imgViewUrl, int defaultImageResId,
-                                   int errorImageResId) {
-        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView, defaultImageResId,
-                errorImageResId);
-        mImageLoader.get(imgViewUrl, listener);
+
+    @Override
+    public Request request(HttpRequest httpRequest, IHttpListener<String> listener, Object tag) {
+        return null;
     }
 
-
-    /**
-     * ImageLoader 指定图片大小
-     *
-     * @param imageView
-     * @param imgViewUrl
-     * @param defaultImageResId
-     * @param errorImageResId
-     * @param maxWidth
-     * @param maxHeight
-     */
-    public void ImageLoaderRequest(ImageView imageView, String imgViewUrl, int defaultImageResId,
-                                   int errorImageResId, int maxWidth, int maxHeight) {
-        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView, defaultImageResId,
-                errorImageResId);
-        mImageLoader.get(imgViewUrl, listener, maxWidth, maxHeight);
-    }
-
-    /**
-     * Get方法
-     *
-     * @param tag
-     * @param url
-     * @param clazz
-     * @param listener
-     * @param errorListener
-     * @param <T>
-     * @return
-     */
-    public <T> GsonRequest<T> GsonGetRequest(Object tag, String url, Class<T> clazz, Response.Listener<T> listener,
-                                             Response.ErrorListener errorListener) {
-        GsonRequest<T> request = new GsonRequest<T>(url, clazz, listener, errorListener);
-        request.setTag(tag);
-        add(request);
+    @Override
+    public Request byteRequest(HttpRequest httpRequest, IHttpListener<byte[]> listener, Object tag) {
+        ByteRequest request = new ByteRequest(httpRequest, listener);
+        addRequest(request, tag);
         return request;
     }
 
-    /**
-     * Post方式1：Map参数
-     *
-     * @param tag
-     * @param params
-     * @param url
-     * @param clazz
-     * @param listener
-     * @param errorListener
-     * @param <T>
-     * @return
-     */
-    public <T> GsonRequest<T> GsonPostRequest(Object tag, Map<String, String> params, String url,
-                                              Class<T> clazz, Response.Listener<T> listener,
-                                              Response.ErrorListener errorListener) {
-        GsonRequest<T> request = new GsonRequest<T>(Request.Method.POST, params, url, clazz, listener, errorListener);
-        request.setTag(tag);
-        add(request);
+    @Override
+    public Request jsonObjectRequest(HttpRequest httpRequest, IHttpListener<JSONObject> listener, Object tag) {
+        JsonObjectRequest request = new JsonObjectRequest(httpRequest, listener);
+        addRequest(request, tag);
         return request;
     }
 
-    /**
-     * Post方式2：json字符串
-     *
-     * @param url
-     * @param jsonObject
-     * @param listener
-     * @param errorListener
-     */
-    public void PostJsonRequest(Object tag, String url, JSONObject jsonObject, Response.Listener<JSONObject> listener,
-                                Response.ErrorListener errorListener) {
-        JsonObjectRequest jsonObjectRequest;
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-                listener, errorListener);
-        jsonObjectRequest.setTag(tag);
-        add(jsonObjectRequest);
+    @Override
+    public Request jsonArrayRequest(HttpRequest httpRequest, IHttpListener<JSONArray> listener, Object tag) {
+        JsonArrayRequest request = new JsonArrayRequest(httpRequest, listener);
+        addRequest(request, tag);
+        return request;
+    }
 
+    @Override
+    public <T> Request gsonRequest(Class<T> tClass, HttpRequest httpRequest, IHttpListener<T> listener, Object tag) {
+        GsonRequest<T> request = new GsonRequest<T>(tClass, httpRequest, listener);
+        addRequest(request, tag);
+        return request;
+    }
+
+    @Override
+    public <T> Request gsonRequest(TypeToken<T> typeToken, HttpRequest httpRequest, IHttpListener<T> listener, Object tag) {
+        GsonRequest<T> request = new GsonRequest<T>(typeToken, httpRequest, listener);
+        addRequest(request, tag);
+        return request;
     }
 
     /**
@@ -197,7 +142,8 @@ public enum VolleyManager {
      *
      * @param tag
      */
-    public void cancel(Object tag) {
+    @Override
+    public void cancelRequest(Object tag) {
         mRequestQueue.cancelAll(tag);
     }
 }

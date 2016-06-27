@@ -3,6 +3,7 @@ package cn.a17xiezuo.vmall.logic;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -10,7 +11,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONObject;
 
 import cn.a17xiezuo.vmall.entity.Person;
-import cn.a17xiezuo.xzlibrary.net.GsonRequest;
+import cn.a17xiezuo.xzlibrary.net.HttpRequest;
+import cn.a17xiezuo.xzlibrary.net.IHttpListener;
 import cn.a17xiezuo.xzlibrary.net.VolleyManager;
 
 /**
@@ -40,27 +42,44 @@ public class TestVolley {
             }
         });
 
-        VolleyManager.INSTANCE.add(jsonObjectRequest);
+        VolleyManager.getInstance(context).addRequest(jsonObjectRequest, this);
 
 
-        GsonRequest<Person> gsonRequest = new GsonRequest<Person>(
-                "http://www.mocky.io/v2/56c9d8c9110000c62f4e0bb0", Person.class,
-                new Response.Listener<Person>() {
-                    @Override
-                    public void onResponse(Person person) {
-                        Log.d(TAG, "first_name: " + person.getFirst_name());
-                        Log.d(TAG, "last_name: " + person.getLast_name());
-                        Log.d(TAG, "gender: " + person.getGender());
+//        GsonRequest<Person> gsonRequest = new GsonRequest<Person>(
+//                "http://www.mocky.io/v2/56c9d8c9110000c62f4e0bb0", Person.class,
+//                new Response.Listener<Person>() {
+//                    @Override
+//                    public void onResponse(Person person) {
+//                        Log.d(TAG, "first_name: " + person.getFirst_name());
+//                        Log.d(TAG, "last_name: " + person.getLast_name());
+//                        Log.d(TAG, "gender: " + person.getGender());
+//
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e(TAG, error.getMessage(), error);
+//            }
+//        });
+//
+//        //添加请求到队列
+//        VolleyManager.INSTANCE.add(gsonRequest);
 
-                    }
-                }, new Response.ErrorListener() {
+        HttpRequest httpRequest = new HttpRequest.Builder("http://www.mocky.io/v2/56c9d8c9110000c62f4e0bb0")
+                .setMethod(Request.Method.GET)
+                .build();
+        VolleyManager.getInstance(context).gsonRequest(Person.class, httpRequest, new IHttpListener<Person>() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, error.getMessage(), error);
+            public void onSuccess(Person person) {
+                Log.d(TAG, "first_name: " + person.getFirst_name());
+                Log.d(TAG, "last_name: " + person.getLast_name());
+                Log.d(TAG, "gender: " + person.getGender());
             }
-        });
 
-        //添加请求到队列
-        VolleyManager.INSTANCE.add(gsonRequest);
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        }, this);
     }
 }

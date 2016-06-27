@@ -28,7 +28,7 @@ public class VMallApplication extends Application {
         this.instance = this;
         LeakCanary.install(this);
         Log.d("ddddd", "ddffkdkfd");
-        VolleyManager.INSTANCE.init(this);
+//        VolleyManager.INSTANCE.init(this);
 
     }
 
