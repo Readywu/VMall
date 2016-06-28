@@ -52,13 +52,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/nav_built_ic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_newcreate" />
             </cn.a17xiezuo.vmall.ui.widget.IconRadioButton>
 
             <cn.a17xiezuo.vmall.ui.widget.IconRadioButton

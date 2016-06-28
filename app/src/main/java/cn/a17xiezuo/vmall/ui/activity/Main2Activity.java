@@ -21,15 +21,17 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.a17xiezuo.vmall.ui.fragment.MainActivity2Fragment;
+import cn.a17xiezuo.vmall.ui.fragment.HomeFragment;
 import cn.a17xiezuo.vmall.ui.fragment.MainActivity3Fragment;
 import cn.a17xiezuo.vmall.ui.fragment.MainActivity4Fragment;
+import cn.a17xiezuo.vmall.ui.fragment.MainActivity5Fragment;
 import cn.a17xiezuo.vmall.ui.fragment.MainActivityFragment;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.MenuCategory;
 import cn.a17xiezuo.vmall.ui.widget.IconRadioButton;
 import cn.a17xiezuo.xzlibrary.ui.widget.ContentViewPagerAdapter;
 import cn.a17xiezuo.xzlibrary.ui.widget.NoScrollViewPager;
+import cn.a17xiezuo.xzlibrary.utils.Log;
 import cn.a17xiezuo.xzlibrary.utils.Utility;
 
 public class Main2Activity extends BaseActivity implements View.OnClickListener {
@@ -52,19 +54,24 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 
 
     @BindView(R.id.content_viewpager)
-    NoScrollViewPager content_viewpager;
+    NoScrollViewPager contentViewpager;
 
     // 底部栏
     @BindView(R.id.ll_bottom_menu)
     LinearLayout ll_bottomMenu;
+
     @BindView(R.id.nav_message)
     IconRadioButton nav_message;
+
     @BindView(R.id.nav_applist)
     IconRadioButton nav_applist;
+
     @BindView(R.id.nav_built)
     IconRadioButton nav_built;
+
     @BindView(R.id.nav_conact)
     IconRadioButton nav_conact;
+
     @BindView(R.id.nav_personal)
     IconRadioButton nav_personal;
 
@@ -140,13 +147,19 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                         .getResources().getDrawable(R.drawable.nav_contact_selector),
                 null, null);
 
+        // 通讯录
+        bt_buitl.setText("讯录");
+        bt_buitl.setCompoundDrawablesWithIntrinsicBounds(null, mContext
+                        .getResources().getDrawable(R.drawable.nav_contact_selector),
+                null, null);
+
         bt_message.setId(R.id.nav_message_bt);
         bt_applist.setId(R.id.nav_applist_bt);
         bt_buitl.setId(R.id.nav_built_bt);
         bt_contact.setId(R.id.nav_conact_bt);
         bt_personal.setId(R.id.nav_personal_bt);
 
-        // bt_message.setOnClickListener(this); // modify by ylb 2015-09-22
+        bt_message.setOnClickListener(this); // modify by ylb 2015-09-22
         // 因为做了单击，所以取消系统单击事件
         bt_applist.setOnClickListener(this);
         bt_buitl.setOnClickListener(this);
@@ -157,10 +170,10 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 //                new OnDoubleClickListener() {
 //                    @Override
 //                    public void onSingleClick(View v) {
-//                        if (content_viewpager.getCurrentItem() == 0) {
+//                        if (contentViewpager.getCurrentItem() == 0) {
 //                            return;
 //                        } else {
-//                            content_viewpager.setCurrentItem(0, false);
+//                            contentViewpager.setCurrentItem(0, false);
 //                        }
 //                        selected = MenuCategory.HOMEPAGE;
 //                        setSelected(selected);
@@ -169,7 +182,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
 //                    @Override
 //                    public void onDoubleClick(View v) {
 //                        if (selected != MenuCategory.HOMEPAGE) {
-//                            content_viewpager.setCurrentItem(0, false);
+//                            contentViewpager.setCurrentItem(0, false);
 //                            selected = MenuCategory.HOMEPAGE;
 //                            setSelected(selected);
 //                        } else {
@@ -193,12 +206,16 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                 bt_applist.setChecked(false);
                 bt_contact.setChecked(false);
                 bt_personal.setChecked(false);
+                bt_buitl.setChecked(false);
+
                 setCustomTitle("消息中心");
             } else if (selected == MenuCategory.APP) {
                 bt_message.setChecked(false);
                 bt_applist.setChecked(true);
                 bt_contact.setChecked(false);
                 bt_personal.setChecked(false);
+                bt_buitl.setChecked(false);
+
                 setCustomTitle("应用列表");
                 setCustomSubTitle("");
             } else if (selected == MenuCategory.CONTACT) {
@@ -206,6 +223,8 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                 bt_applist.setChecked(false);
                 bt_contact.setChecked(true);
                 bt_personal.setChecked(false);
+                bt_buitl.setChecked(false);
+
                 setCustomTitle("通讯录");
                 setCustomSubTitle("");
             } else if (selected == MenuCategory.PERSON) {
@@ -213,6 +232,16 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
                 bt_applist.setChecked(false);
                 bt_contact.setChecked(false);
                 bt_personal.setChecked(true);
+                bt_buitl.setChecked(false);
+
+                setCustomTitle("我");
+                setCustomSubTitle("");
+            } else if (selected == MenuCategory.NEW) {
+                bt_message.setChecked(false);
+                bt_applist.setChecked(false);
+                bt_contact.setChecked(false);
+                bt_personal.setChecked(false);
+                bt_buitl.setChecked(true);
                 setCustomTitle("我");
                 setCustomSubTitle("");
             }
@@ -231,16 +260,17 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         messageCenterFragment = MainActivityFragment.newInstance();
 
         fragments.add(messageCenterFragment);
-        fragments.add(MainActivity2Fragment.newInstance());
+        fragments.add(HomeFragment.newInstance());
         fragments.add(MainActivity3Fragment.newInstance());
         fragments.add(MainActivity4Fragment.newInstance());
+        fragments.add(MainActivity5Fragment.newInstance());
 
         viewPagerAdapter = new ContentViewPagerAdapter(mFragmentManager,
                 fragments);
-        content_viewpager.setAdapter(viewPagerAdapter);
-        content_viewpager.setCurrentItem(0, false);
+        contentViewpager.setAdapter(viewPagerAdapter);
+        contentViewpager.setCurrentItem(0, false);
         // 防止viewpager中的内容被清空，缓存三个页面。或者重写adapter中的destroyItem方法
-        content_viewpager.setOffscreenPageLimit(4);
+        contentViewpager.setOffscreenPageLimit(4);
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -266,7 +296,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         // 是否需要回到消息页面
         if (isNeedGoHome) {
             // popAllFragmentStack();
-            content_viewpager.setCurrentItem(0, false);
+            contentViewpager.setCurrentItem(0, false);
             isNeedGoHome = false;
         }
 
@@ -292,39 +322,49 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
+        Log.d(TAG, contentViewpager.getCurrentItem() + " " + viewId);
         switch (viewId) {
             case R.id.nav_message_bt:
-                if (content_viewpager.getCurrentItem() == 0) {
+                if (contentViewpager.getCurrentItem() == 0) {
                     return;
                 } else {
-                    content_viewpager.setCurrentItem(0, false);
+                    contentViewpager.setCurrentItem(0, false);
                 }
                 selected = MenuCategory.HOMEPAGE;
                 break;
             case R.id.nav_applist_bt:
-                if (content_viewpager.getCurrentItem() == 1) {
+                if (contentViewpager.getCurrentItem() == 1) {
                     return;
                 } else {
-                    content_viewpager.setCurrentItem(1, false);
+                    contentViewpager.setCurrentItem(1, false);
                 }
                 selected = MenuCategory.APP;
                 break;
-
-            case R.id.nav_conact_bt:
-                if (content_viewpager.getCurrentItem() == 2) {
+            case R.id.nav_built_bt:
+                if (contentViewpager.getCurrentItem() == 2) {
                     return;
                 } else {
-                    content_viewpager.setCurrentItem(2, false);
+                    contentViewpager.setCurrentItem(2, false);
+                }
+                selected = MenuCategory.NEW;
+                break;
+            case R.id.nav_conact_bt:
+                if (contentViewpager.getCurrentItem() == 3) {
+                    return;
+                } else {
+                    contentViewpager.setCurrentItem(3, false);
                 }
                 selected = MenuCategory.CONTACT;
                 break;
             case R.id.nav_personal_bt:
-                if (content_viewpager.getCurrentItem() == 3) {
+                if (contentViewpager.getCurrentItem() == 4) {
                     return;
                 } else {
-                    content_viewpager.setCurrentItem(3, false);
+                    contentViewpager.setCurrentItem(4, false);
                 }
                 selected = MenuCategory.PERSON;
+                break;
+            default:
                 break;
 
         }
@@ -334,12 +374,12 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onBackPressed() {
 
-        if (content_viewpager.getCurrentItem() != 0) {
+        if (contentViewpager.getCurrentItem() != 0) {
             getActionBar().show();
             setBottomMenuFrameLayoutVisible(true);
             selected = MenuCategory.HOMEPAGE;
             setSelected(selected);
-            content_viewpager.setCurrentItem(0, false);
+            contentViewpager.setCurrentItem(0, false);
         } else {
             finish();
 

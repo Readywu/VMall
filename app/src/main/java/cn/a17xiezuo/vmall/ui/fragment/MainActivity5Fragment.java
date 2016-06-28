@@ -23,7 +23,7 @@ import cn.a17xiezuo.vmall.ui.view.IMainView;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivity2Fragment extends Fragment implements IMainView {
+public class MainActivity5Fragment extends Fragment implements IMainView {
 
     @BindView(R.id.hello)
     TextView helloTextView;
@@ -33,12 +33,12 @@ public class MainActivity2Fragment extends Fragment implements IMainView {
     private Unbinder unbinder;
     IMainviewPresenter mainviewPresenter;
 
-    public static MainActivity2Fragment newInstance() {
-        MainActivity2Fragment fragment = new MainActivity2Fragment();
+    public static MainActivity5Fragment newInstance() {
+        MainActivity5Fragment fragment = new MainActivity5Fragment();
         return fragment;
     }
 
-    public MainActivity2Fragment() {
+    public MainActivity5Fragment() {
         mainviewPresenter = new MainviewPresenterImpl(getContext(), this);
     }
 
