@@ -1,4 +1,4 @@
-package cn.a17xiezuo.vmall;
+package cn.a17xiezuo.vmall.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +15,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.a17xiezuo.vmall.Presenter.IMainviewPresenter;
 import cn.a17xiezuo.vmall.Presenter.MainviewPresenterImpl;
+import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.ui.view.IMainView;
 
@@ -31,6 +32,11 @@ public class MainActivityFragment extends Fragment implements IMainView {
 
     private Unbinder unbinder;
     IMainviewPresenter mainviewPresenter;
+
+    public static MainActivityFragment newInstance() {
+        MainActivityFragment fragment = new MainActivityFragment();
+        return fragment;
+    }
 
     public MainActivityFragment() {
         mainviewPresenter = new MainviewPresenterImpl(getContext(), this);

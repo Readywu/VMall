@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.Main2Activity">
+
+    <cn.a17xiezuo.xzlibrary.ui.widget.NoScrollViewPager
+        android:id="@+id/content_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="#b3b3b3" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#f8f8f8"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <RadioGroup
+            android:id="@+id/bottom_radigroup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+                android:id="@+id/nav_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+            </cn.a17xiezuo.vmall.ui.widget.IconRadioButton>
+
+            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+                android:id="@+id/nav_applist"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+                android:id="@+id/nav_built"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/nav_built_ic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_newcreate" />
+            </cn.a17xiezuo.vmall.ui.widget.IconRadioButton>
+
+            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+                android:id="@+id/nav_conact"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            </cn.a17xiezuo.vmall.ui.widget.IconRadioButton>
+
+            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+                android:id="@+id/nav_personal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+</LinearLayout>

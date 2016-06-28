@@ -26,7 +26,7 @@
     <!--android:layout_height="wrap_content"-->
     <!--android:background="@android:color/transparent"-->
     <!--android:visibility="gone"/>-->
-    <cn.a17xiezuo.xzlibrary.ui.view.swiperefresh.CSwipeRefreshLayout
+    <cn.a17xiezuo.xzlibrary.ui.widget.swiperefresh.CSwipeRefreshLayout
         android:id="@+id/activity_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,5 +35,5 @@
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></ScrollView>
-    </cn.a17xiezuo.xzlibrary.ui.view.swiperefresh.CSwipeRefreshLayout>
+    </cn.a17xiezuo.xzlibrary.ui.widget.swiperefresh.CSwipeRefreshLayout>
 </RelativeLayout>

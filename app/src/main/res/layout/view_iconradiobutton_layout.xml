@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioButton
+        android:id="@+id/btn_radiobutton"
+        style="@style/common_nav_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_titlebar_height"
+        android:layout_centerInParent="true"
+        android:button="@null"
+        android:drawablePadding="2dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/nav_workcenter_bottomtextcolor" />
+
+</RelativeLayout>

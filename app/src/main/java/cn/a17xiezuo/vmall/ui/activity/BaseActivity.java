@@ -28,7 +28,6 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import cn.a17xiezuo.vmall.MainActivity;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.xzlibrary.common.Constants;
 import cn.a17xiezuo.xzlibrary.ui.widget.swiperefresh.CSwipeRefreshLayout;

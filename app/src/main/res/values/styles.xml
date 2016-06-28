@@ -17,4 +17,12 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="common_nav_button">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:drawablePadding">-5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@color/nav_button_textcolor_selector</item>
+        <item name="android:textSize">@dimen/common_text_size_24</item>
+    </style>
 </resources>

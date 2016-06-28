@@ -1,4 +1,4 @@
-package cn.a17xiezuo.vmall;
+package cn.a17xiezuo.vmall.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.logic.TestVolley;
 
 public class MainActivity extends AppCompatActivity {
