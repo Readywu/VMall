@@ -112,7 +112,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
      * 初始化控件
      */
     private void initUI() {
-        setCustomTitle("消息中心");
+        // setCustomTitle("消息中心");
 
         bt_message = nav_message.getRadioButton();
         bt_applist = nav_applist.getRadioButton();
@@ -124,6 +124,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         bt_applist.setChecked(false);
         bt_contact.setChecked(false);
         bt_personal.setChecked(false);
+        bt_buitl.setChecked(false);
         // 消息
         bt_message
                 .setCompoundDrawablesWithIntrinsicBounds(null,
@@ -259,7 +260,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         fragments = new ArrayList<Fragment>();
         messageCenterFragment = MainActivityFragment.newInstance();
 
-        fragments.add(messageCenterFragment);
+        fragments.add(MainActivityFragment.newInstance());
         fragments.add(HomeFragment.newInstance());
         fragments.add(MainActivity3Fragment.newInstance());
         fragments.add(MainActivity4Fragment.newInstance());

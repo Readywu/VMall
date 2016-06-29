@@ -2,10 +2,10 @@ package cn.a17xiezuo.vmall.application;
 
 import android.app.Application;
 
-import com.squareup.leakcanary.RefWatcher;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
-import cn.a17xiezuo.xzlibrary.net.VolleyManager;
 import cn.a17xiezuo.xzlibrary.utils.Log;
 
 /**
@@ -29,7 +29,7 @@ public class VMallApplication extends Application {
         LeakCanary.install(this);
         Log.d("ddddd", "ddffkdkfd");
 //        VolleyManager.INSTANCE.init(this);
-
+        Fresco.initialize(this);
     }
 
 
