@@ -376,7 +376,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     public void onBackPressed() {
 
         if (contentViewpager.getCurrentItem() != 0) {
-            getActionBar().show();
+            //getActionBar().show();
             setBottomMenuFrameLayoutVisible(true);
             selected = MenuCategory.HOMEPAGE;
             setSelected(selected);

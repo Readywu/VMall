@@ -1,22 +1,23 @@
-package cn.a17xiezuo.vmall.Presenter;
+package cn.a17xiezuo.vmall.Presenter.impl;
 
 import android.content.Context;
 
+import cn.a17xiezuo.vmall.Presenter.IHomePresenter;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.logic.IPersonInteractor;
 import cn.a17xiezuo.vmall.logic.impl.PersonInteractorImpl;
-import cn.a17xiezuo.vmall.ui.view.IMainView;
+import cn.a17xiezuo.vmall.ui.view.IHomeView;
 
 /**
  * Created by wuyunan on 16/6/27.
  */
-public class MainviewPresenterImpl implements IMainviewPresenter, IPersonInteractor.OnPersonFinishedListener {
+public class HomePresenterImpl implements IHomePresenter, IPersonInteractor.OnPersonFinishedListener {
 
-    IMainView mainView;
+    IHomeView mainView;
     IPersonInteractor personInteractor;
     Context mComtext;
 
-    public MainviewPresenterImpl(Context context, IMainView mainView) {
+    public HomePresenterImpl(Context context, IHomeView mainView) {
         this.mainView = mainView;
         this.personInteractor = new PersonInteractorImpl();
         this.mComtext = context;

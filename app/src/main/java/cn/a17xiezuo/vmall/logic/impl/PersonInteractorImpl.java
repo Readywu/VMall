@@ -1,7 +1,6 @@
 package cn.a17xiezuo.vmall.logic.impl;
 
 import android.content.Context;
-import android.provider.Settings;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -36,10 +35,10 @@ public class PersonInteractorImpl implements IPersonInteractor {
         volleyManager.gsonRequest(Person.class, httpRequest, new IHttpListener<Person>() {
             @Override
             public void onSuccess(Person person) {
-                Log.d(TAG, "first_name: " + person.getFirst_name());
-                Log.d(TAG, "last_name: " + person.getLast_name());
+                Log.d(TAG, "first_name: " + person.getFirstName());
+                Log.d(TAG, "last_name: " + person.getLastName());
                 Log.d(TAG, "gender: " + person.getGender());
-                person.setFirst_name(person.getFirst_name() + System.currentTimeMillis());
+                person.setFirstName(person.getFirstName() + System.currentTimeMillis());
                 listener.onSuccess(person);
             }
 

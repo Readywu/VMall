@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.a17xiezuo.vmall.Presenter.IMainviewPresenter;
-import cn.a17xiezuo.vmall.Presenter.MainviewPresenterImpl;
+import cn.a17xiezuo.vmall.Presenter.impl.MainviewPresenterImpl;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.ui.view.IMainView;
@@ -75,7 +75,7 @@ public class MainActivity4Fragment extends Fragment implements IMainView {
 
     @Override
     public void setPerson(Person person) {
-        helloTextView.setText(person.getFirst_name());
+        helloTextView.setText(person.getFirstName());
     }
 
     @Override

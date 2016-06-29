@@ -33,8 +33,8 @@ public class TestVolley {
         VolleyManager.getInstance(context).gsonRequest(Person.class, httpRequest, new IHttpListener<Person>() {
             @Override
             public void onSuccess(Person person) {
-                Log.d(TAG, "first_name: " + person.getFirst_name());
-                Log.d(TAG, "last_name: " + person.getLast_name());
+                Log.d(TAG, "first_name: " + person.getFirstName());
+                Log.d(TAG, "last_name: " + person.getLastName());
                 Log.d(TAG, "gender: " + person.getGender());
             }
 

@@ -3,30 +3,55 @@ package cn.a17xiezuo.vmall.entity;
 public class Person {
 
     private String gender;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
+    private int age;
+    private int iconResId;
+
+    public Person(String firstName, String lastName, int iconResId) {
+        this.firstName = firstName;
+        this.iconResId = iconResId;
+        this.lastName = lastName;
+    }
+
+    public int getIconResId() {
+
+        return iconResId;
+    }
+
+    public void setIconResId(int iconResId) {
+        this.iconResId = iconResId;
+    }
+
+    public String getGender() {
+        return gender;
+    }
 
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public String getGender() {
-        return this.gender;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getFirst_name() {
-        return this.first_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getLast_name() {
-        return this.last_name;
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

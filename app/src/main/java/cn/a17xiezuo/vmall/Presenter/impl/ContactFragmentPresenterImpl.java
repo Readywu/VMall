@@ -1,7 +1,8 @@
-package cn.a17xiezuo.vmall.Presenter;
+package cn.a17xiezuo.vmall.Presenter.impl;
 
 import android.content.Context;
 
+import cn.a17xiezuo.vmall.Presenter.IContactFragmentPresenter;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.logic.IPersonInteractor;
 import cn.a17xiezuo.vmall.logic.impl.PersonInteractorImpl;
