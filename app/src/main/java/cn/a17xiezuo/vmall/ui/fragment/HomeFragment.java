@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +18,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.a17xiezuo.vmall.Presenter.HomeFragmentPresenterImpl;
-import cn.a17xiezuo.vmall.Presenter.IHomeFragmentPresenter;
+import cn.a17xiezuo.vmall.Presenter.ContactFragmentPresenterImpl;
+import cn.a17xiezuo.vmall.Presenter.IContactFragmentPresenter;
 import cn.a17xiezuo.vmall.R;
-import cn.a17xiezuo.vmall.ui.view.IHomeView;
+import cn.a17xiezuo.vmall.entity.ItemArticle;
+import cn.a17xiezuo.vmall.ui.widget.ArticleAdapter;
+import cn.a17xiezuo.vmall.ui.view.IContactView;
 
 
 /**
@@ -29,16 +31,16 @@ import cn.a17xiezuo.vmall.ui.view.IHomeView;
  *         <p/>
  *         首页功能
  */
-public class HomeFragment extends Fragment implements IHomeView {
+public class HomeFragment extends Fragment implements IContactView {
 
     @BindView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
 
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
 
     private Unbinder unbinder;
-    IHomeFragmentPresenter homeFragmentPresenter;
+    IContactFragmentPresenter homeFragmentPresenter;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -46,7 +48,7 @@ public class HomeFragment extends Fragment implements IHomeView {
     }
 
     public HomeFragment() {
-        homeFragmentPresenter = new HomeFragmentPresenterImpl(getContext(), this);
+        homeFragmentPresenter = new ContactFragmentPresenterImpl(getContext(), this);
     }
 
     @Override
@@ -65,12 +67,36 @@ public class HomeFragment extends Fragment implements IHomeView {
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager = new GridLayoutManager(getContext(), 4);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position == 0) {
+                    return 4;
+                } else if (position % 9 == 1) {
+                    return 4;
+                }
+                return 2;
+            }
+        });
         mRecyclerView.setLayoutManager(mLayoutManager);
+        //mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
         initializeData();
-        mAdapter = new RVAdapter(persons);
+        List<ItemArticle> list = new ArrayList<ItemArticle>();
+
+        for (int i = 0; i < 100; i++) {
+            ItemArticle item = new ItemArticle();
+            item.setImageUrl("http://avatar.csdn.net/5/4/D/1_never_cxb.jpg");
+            item.setTitle("titile" + i);
+            item.setPreview("ddddddddkofjwefjiowfjodisfkldsfklsdfmlksdfmlkdsfmkldsfmkldsfd");
+            list.add(item);
+        }
+
+        mAdapter = new ArticleAdapter(getContext(), list);
+
+        //mAdapter = new RVAdapter(persons);
         mRecyclerView.setAdapter(mAdapter);
     }
 

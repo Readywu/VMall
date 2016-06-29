@@ -5,19 +5,18 @@ import android.content.Context;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.logic.IPersonInteractor;
 import cn.a17xiezuo.vmall.logic.impl.PersonInteractorImpl;
-import cn.a17xiezuo.vmall.ui.view.IHomeView;
-import cn.a17xiezuo.vmall.ui.view.IMainView;
+import cn.a17xiezuo.vmall.ui.view.IContactView;
 
 /**
  * Created by wuyunan on 16/6/27.
  */
-public class HomeFragmentPresenterImpl implements IHomeFragmentPresenter, IPersonInteractor.OnPersonFinishedListener {
+public class ContactFragmentPresenterImpl implements IContactFragmentPresenter, IPersonInteractor.OnPersonFinishedListener {
 
-    IHomeView mainView;
+    IContactView mainView;
     IPersonInteractor personInteractor;
     Context mComtext;
 
-    public HomeFragmentPresenterImpl(Context context, IHomeView mainView) {
+    public ContactFragmentPresenterImpl(Context context, IContactView mainView) {
         this.mainView = mainView;
         this.personInteractor = new PersonInteractorImpl();
         this.mComtext = context;

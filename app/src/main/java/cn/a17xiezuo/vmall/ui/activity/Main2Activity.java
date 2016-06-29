@@ -21,8 +21,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.a17xiezuo.vmall.ui.fragment.ContactFragment;
 import cn.a17xiezuo.vmall.ui.fragment.HomeFragment;
-import cn.a17xiezuo.vmall.ui.fragment.MainActivity3Fragment;
 import cn.a17xiezuo.vmall.ui.fragment.MainActivity4Fragment;
 import cn.a17xiezuo.vmall.ui.fragment.MainActivity5Fragment;
 import cn.a17xiezuo.vmall.ui.fragment.MainActivityFragment;
@@ -261,8 +261,8 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         messageCenterFragment = MainActivityFragment.newInstance();
 
         fragments.add(MainActivityFragment.newInstance());
+        fragments.add(ContactFragment.newInstance());
         fragments.add(HomeFragment.newInstance());
-        fragments.add(MainActivity3Fragment.newInstance());
         fragments.add(MainActivity4Fragment.newInstance());
         fragments.add(MainActivity5Fragment.newInstance());
 

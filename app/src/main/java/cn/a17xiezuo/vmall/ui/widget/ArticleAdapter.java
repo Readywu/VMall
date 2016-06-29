@@ -1,4 +1,4 @@
-package cn.a17xiezuo.vmall.ui.view;
+package cn.a17xiezuo.vmall.ui.widget;
 
 import android.content.Context;
 import android.net.Uri;
@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,7 +42,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     //Handler 用到的参数值
     private static final int UPTATE_VIEWPAGER = 0;
     private static final String TAG = ArticleAdapter.class.getSimpleName();
-    private final ArrayList<ImageView> imageList;
 
     //新闻列表
     private List<ItemArticle> articleList;
@@ -56,12 +54,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private LayoutInflater mLayoutInflater;
 
-    private ImageView[] mCircleImages;//底部只是当前页面的小圆点
-    private final int[] images = {R.drawable.ic_applist_normal, R.drawable.ic_applist_press, R.drawable.ic_contact_normal,
-            R.drawable.ic_contact_press, R.drawable.ic_nav_msg_center};
-    // 图片标题集合
-    private final String[] imageDescriptions = {"第一张图片",
-            "第二张图片", "第三张图片", "第四张图片", "第五张图片"};
 
     public ArticleAdapter(Context context, List<ItemArticle> articleList) {
         this.context = context;
@@ -72,16 +64,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         // 初始化图片资源
-        imageList = new ArrayList<ImageView>();
-        for (int i : images) {
-            // 初始化图片资源
-            ImageView imageView = new ImageView(context);
-            imageView.setBackgroundResource(i);
-            imageList.add(imageView);
-            Log.d("ArticleAdapter", "ArticleAdapter");
 
-
-        }
 
     }
 

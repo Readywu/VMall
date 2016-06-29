@@ -18,12 +18,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.a17xiezuo.vmall.Presenter.HomeFragmentPresenterImpl;
-import cn.a17xiezuo.vmall.Presenter.IHomeFragmentPresenter;
+import cn.a17xiezuo.vmall.Presenter.ContactFragmentPresenterImpl;
+import cn.a17xiezuo.vmall.Presenter.IContactFragmentPresenter;
 import cn.a17xiezuo.vmall.R;
-import cn.a17xiezuo.vmall.entity.ItemArticle;
-import cn.a17xiezuo.vmall.ui.view.ArticleAdapter;
-import cn.a17xiezuo.vmall.ui.view.IHomeView;
+import cn.a17xiezuo.vmall.ui.view.IContactView;
 
 
 /**
@@ -31,7 +29,7 @@ import cn.a17xiezuo.vmall.ui.view.IHomeView;
  *         <p/>
  *         首页功能
  */
-public class MainActivity3Fragment extends Fragment implements IHomeView {
+public class ContactFragment extends Fragment implements IContactView {
 
     @BindView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
@@ -40,15 +38,15 @@ public class MainActivity3Fragment extends Fragment implements IHomeView {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Unbinder unbinder;
-    IHomeFragmentPresenter homeFragmentPresenter;
+    IContactFragmentPresenter homeFragmentPresenter;
 
-    public static MainActivity3Fragment newInstance() {
-        MainActivity3Fragment fragment = new MainActivity3Fragment();
+    public static ContactFragment newInstance() {
+        ContactFragment fragment = new ContactFragment();
         return fragment;
     }
 
-    public MainActivity3Fragment() {
-        homeFragmentPresenter = new HomeFragmentPresenterImpl(getContext(), this);
+    public ContactFragment() {
+        homeFragmentPresenter = new ContactFragmentPresenterImpl(getContext(), this);
     }
 
     @Override
@@ -72,19 +70,7 @@ public class MainActivity3Fragment extends Fragment implements IHomeView {
 
         // specify an adapter (see also next example)
         initializeData();
-        List<ItemArticle> list = new ArrayList<ItemArticle>();
-
-        for (int i = 0; i < 100; i++) {
-            ItemArticle item = new ItemArticle();
-            item.setImageUrl("http://avatar.csdn.net/5/4/D/1_never_cxb.jpg");
-            item.setTitle("titile" + i);
-            item.setPreview("ddddddddkofjwefjiowfjodisfkldsfklsdfmlksdfmlkdsfmkldsfmkldsfd");
-            list.add(item);
-        }
-
-        mAdapter = new ArticleAdapter(getContext(), list);
-
-        //mAdapter = new RVAdapter(persons);
+        mAdapter = new RVAdapter(persons);
         mRecyclerView.setAdapter(mAdapter);
     }
 

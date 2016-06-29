@@ -1,4 +1,4 @@
-package cn.a17xiezuo.vmall.ui.view;
+package cn.a17xiezuo.vmall.ui.widget;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
