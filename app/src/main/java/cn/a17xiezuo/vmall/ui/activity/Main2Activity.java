@@ -61,19 +61,19 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     LinearLayout ll_bottomMenu;
 
     @BindView(R.id.nav_message)
-    IconRadioButton nav_message;
+    IconRadioButton mNavMessageButton;
 
     @BindView(R.id.nav_applist)
-    IconRadioButton nav_applist;
+    IconRadioButton mNavApplistButton;
 
     @BindView(R.id.nav_built)
-    IconRadioButton nav_built;
+    IconRadioButton navBuilt;
 
     @BindView(R.id.nav_conact)
-    IconRadioButton nav_conact;
+    IconRadioButton navConact;
 
     @BindView(R.id.nav_personal)
-    IconRadioButton nav_personal;
+    IconRadioButton navPersonal;
 
     private MenuCategory selected;
     private RadioButton bt_message;
@@ -114,45 +114,18 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
     private void initUI() {
         // setCustomTitle("消息中心");
 
-        bt_message = nav_message.getRadioButton();
-        bt_applist = nav_applist.getRadioButton();
-        bt_contact = nav_conact.getRadioButton();
-        bt_buitl = nav_built.getRadioButton();
-        bt_personal = nav_personal.getRadioButton();
+        bt_message = mNavMessageButton.getRadioButton();
+        bt_applist = mNavApplistButton.getRadioButton();
+        bt_contact = navConact.getRadioButton();
+        bt_buitl = navBuilt.getRadioButton();
+        bt_personal = navPersonal.getRadioButton();
 
-        bt_message.setChecked(true);
-        bt_applist.setChecked(false);
-        bt_contact.setChecked(false);
-        bt_personal.setChecked(false);
-        bt_buitl.setChecked(false);
-        // 消息
-        bt_message
-                .setCompoundDrawablesWithIntrinsicBounds(null,
-                        mContext.getResources().getDrawable(
-                                R.drawable.nav_msg_center_selector),
-                        null, null);
-        bt_message.setText("消息");
-        // 我
-        bt_personal.setText("我");
-        bt_personal.setCompoundDrawablesWithIntrinsicBounds(null, mContext
-                        .getResources().getDrawable(R.drawable.nav_personal_selector),
-                null, null);
-        // 应用
-        bt_applist.setText("应用");
-        bt_applist.setCompoundDrawablesWithIntrinsicBounds(null, mContext
-                        .getResources().getDrawable(R.drawable.nav_applist_selector),
-                null, null);
-        // 通讯录
-        bt_contact.setText("通讯录");
-        bt_contact.setCompoundDrawablesWithIntrinsicBounds(null, mContext
-                        .getResources().getDrawable(R.drawable.nav_contact_selector),
-                null, null);
+        mNavMessageButton.setChecked(true);
+        mNavApplistButton.setChecked(false);
+        navConact.setChecked(false);
+        navBuilt.setChecked(false);
+        navPersonal.setChecked(false);
 
-        // 通讯录
-        bt_buitl.setText("讯录");
-        bt_buitl.setCompoundDrawablesWithIntrinsicBounds(null, mContext
-                        .getResources().getDrawable(R.drawable.nav_contact_selector),
-                null, null);
 
         bt_message.setId(R.id.nav_message_bt);
         bt_applist.setId(R.id.nav_applist_bt);
@@ -200,54 +173,43 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
      * @param selected
      */
     public void setSelected(MenuCategory selected) {
-        if (bt_message != null && bt_applist != null && bt_contact != null
-                && bt_personal != null) {
+
+        mNavMessageButton.setChecked(false);
+        mNavApplistButton.setChecked(false);
+        navConact.setChecked(false);
+        navBuilt.setChecked(false);
+        navPersonal.setChecked(false);
             if (selected == MenuCategory.HOMEPAGE) {
-                bt_message.setChecked(true);
-                bt_applist.setChecked(false);
-                bt_contact.setChecked(false);
-                bt_personal.setChecked(false);
-                bt_buitl.setChecked(false);
+                mNavMessageButton.setChecked(true);
 
                 setCustomTitle("消息中心");
             } else if (selected == MenuCategory.APP) {
-                bt_message.setChecked(false);
-                bt_applist.setChecked(true);
-                bt_contact.setChecked(false);
-                bt_personal.setChecked(false);
-                bt_buitl.setChecked(false);
+
+                mNavApplistButton.setChecked(true);
 
                 setCustomTitle("应用列表");
                 setCustomSubTitle("");
             } else if (selected == MenuCategory.CONTACT) {
-                bt_message.setChecked(false);
-                bt_applist.setChecked(false);
-                bt_contact.setChecked(true);
-                bt_personal.setChecked(false);
-                bt_buitl.setChecked(false);
+
+                navConact.setChecked(true);
 
                 setCustomTitle("通讯录");
                 setCustomSubTitle("");
             } else if (selected == MenuCategory.PERSON) {
-                bt_message.setChecked(false);
-                bt_applist.setChecked(false);
-                bt_contact.setChecked(false);
-                bt_personal.setChecked(true);
-                bt_buitl.setChecked(false);
+
+
+                navPersonal.setChecked(true);
 
                 setCustomTitle("我");
                 setCustomSubTitle("");
             } else if (selected == MenuCategory.NEW) {
-                bt_message.setChecked(false);
-                bt_applist.setChecked(false);
-                bt_contact.setChecked(false);
-                bt_personal.setChecked(false);
-                bt_buitl.setChecked(true);
+                navBuilt.setChecked(true);
+
                 setCustomTitle("我");
                 setCustomSubTitle("");
             }
 
-        }
+
     }
 
     /**
@@ -437,31 +399,31 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
      * @param count
      */
     public void updateMsgCenterCount(int count) {
-        if (nav_message == null) {
+        if (mNavMessageButton == null) {
             return;
         }
         if (count > 0) {
-            nav_message.setRedpoint(true);
-            nav_message.setCount(count);
+            mNavMessageButton.setRedpoint(true);
+            mNavMessageButton.setCount(count);
         } else {
-            nav_message.setRedpoint(false);
+            mNavMessageButton.setRedpoint(false);
         }
 
     }
 
 //    public void updateDraftNotice(int count, boolean hasNewVersion,
 //            boolean hasActivity) {
-//        if (nav_personal == null) {
+//        if (navPersonal == null) {
 //            return;
 //        }
 //        if (personalFragment == null) {
 //            return;
 //        }
 //        if (count != 0 || hasNewVersion || hasActivity) {
-//            nav_personal.setRedpoint(true);
+//            navPersonal.setRedpoint(true);
 //            personalFragment.setDraftPoint(count);
 //        } else {
-//            nav_personal.setRedpoint(false);
+//            navPersonal.setRedpoint(false);
 //            personalFragment.setDraftPoint(0);
 //        }
 //    }

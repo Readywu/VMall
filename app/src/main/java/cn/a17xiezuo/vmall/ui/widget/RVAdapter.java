@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.Person;
 
@@ -47,17 +49,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     }
 
     class PersonViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.cv)
         CardView cv;
+        @BindView(R.id.person_name)
         TextView personName;
+        @BindView(R.id.person_age)
         TextView personAge;
+        @BindView(R.id.person_photo)
         ImageView personPhoto;
 
         PersonViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
-            personName = (TextView) itemView.findViewById(R.id.person_name);
-            personAge = (TextView) itemView.findViewById(R.id.person_age);
-            personPhoto = (ImageView) itemView.findViewById(R.id.person_photo);
+            ButterKnife.bind(this, itemView);
         }
     }
 

@@ -2,12 +2,15 @@ package cn.a17xiezuo.vmall.ui.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -17,6 +20,9 @@ import cn.a17xiezuo.xzlibrary.utils.Utility;
 
 
 public class IconRadioButton extends RelativeLayout {
+    private CharSequence iconText;
+    private Drawable background;
+    private int mButtonId;
     private int count;
     private boolean isShowRedpoint = false;
     private RadioButton mRadioButton;
@@ -30,6 +36,10 @@ public class IconRadioButton extends RelativeLayout {
     public IconRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         // TODO Auto-generated constructor stub
+        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.IconRadioButton);
+        background = attributes.getDrawable(R.styleable.IconRadioButton_iconbBackground);
+        iconText = attributes.getString(R.styleable.IconRadioButton_iconText);
+
         init();
     }
 
@@ -42,6 +52,14 @@ public class IconRadioButton extends RelativeLayout {
     private void init() {
         inflate(getContext(), R.layout.view_iconradiobutton_layout, this);
         mRadioButton = (RadioButton) findViewById(R.id.btn_radiobutton);
+        if (background != null) {
+            mRadioButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    background,
+                    null, null);
+        }
+        if (!TextUtils.isEmpty(iconText)) {
+            mRadioButton.setText(iconText);
+        }
     }
 
     public void setCount(int count) {
@@ -60,6 +78,34 @@ public class IconRadioButton extends RelativeLayout {
 
     public RadioButton getRadioButton() {
         return mRadioButton;
+    }
+
+    /**
+     * set check
+     *
+     * @param checked
+     */
+    public void setChecked(boolean checked) {
+        this.mRadioButton.setChecked(checked);
+    }
+
+    /**
+     * @param background
+     */
+    public void setButtonBackground(Drawable background) {
+        this.background = background;
+        if (this.background != null) {
+            mRadioButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    background,
+                    null, null);
+        }
+    }
+
+    public void setIconText(CharSequence text) {
+        this.iconText = text;
+        if (!TextUtils.isEmpty(iconText)) {
+            mRadioButton.setText(iconText);
+        }
     }
 
     @SuppressLint("ResourceAsColor")

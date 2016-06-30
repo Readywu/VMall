@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IconRadioButton">
+        <attr name="iconbBackground" format="reference" />
+        <attr name="iconText" format="string" />
+    </declare-styleable>
+</resources>
