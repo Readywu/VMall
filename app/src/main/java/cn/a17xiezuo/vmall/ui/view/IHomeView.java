@@ -1,5 +1,6 @@
 package cn.a17xiezuo.vmall.ui.view;
 
+import cn.a17xiezuo.vmall.entity.Datum;
 import cn.a17xiezuo.vmall.entity.Person;
 
 /**
@@ -13,4 +14,6 @@ public interface IHomeView extends BaseView {
     void setPerson(Person person);
 
     void showMessage(String message);
+
+    void refreshData(Datum datum);
 }

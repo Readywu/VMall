@@ -10,7 +10,7 @@ public enum MenuCategory {
     PERSON("我", "我"),
     CONTACT("通讯", "通讯录"),
     APP("应用", "应用"),
-    NEW("新建", "新建");
+    NEW("采购单", "采购单");
 
     private String displayName;
     private String customTitle;

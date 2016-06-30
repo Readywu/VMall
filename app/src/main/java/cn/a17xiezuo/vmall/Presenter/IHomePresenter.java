@@ -5,7 +5,7 @@ package cn.a17xiezuo.vmall.Presenter;
  */
 public interface IHomePresenter {
 
-    void getPersionInfo();
+    void getHomeData();
 
     void onDestroy();
 }

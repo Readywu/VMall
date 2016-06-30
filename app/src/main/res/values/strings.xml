@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="nav_button_app">应用</string>
     <string name="nav_button_home">首页</string>
-    <string name="nav_button_built">新建</string>
+    <string name="nav_button_built">采购单</string>
     <string name="nav_button_contact">通讯录</string>
     <string name="nav_button_mine">我的</string>
 </resources>

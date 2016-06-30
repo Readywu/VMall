@@ -18,10 +18,11 @@ import butterknife.Unbinder;
 import cn.a17xiezuo.vmall.Presenter.IHomePresenter;
 import cn.a17xiezuo.vmall.Presenter.impl.HomePresenterImpl;
 import cn.a17xiezuo.vmall.R;
+import cn.a17xiezuo.vmall.entity.Datum;
 import cn.a17xiezuo.vmall.entity.ItemArticle;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.ui.view.IHomeView;
-import cn.a17xiezuo.vmall.ui.widget.ArticleAdapter;
+import cn.a17xiezuo.vmall.ui.widget.DatumAdapter;
 
 
 /**
@@ -66,17 +67,7 @@ public class HomeFragment extends Fragment implements IHomeView {
 
         // use a linear layout manager
         mLayoutManager = new GridLayoutManager(getContext(), 4);
-        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                if (position == 0) {
-                    return 4;
-                } else if (position % 9 == 1) {
-                    return 4;
-                }
-                return 2;
-            }
-        });
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         //mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -92,10 +83,8 @@ public class HomeFragment extends Fragment implements IHomeView {
             list.add(item);
         }
 
-        mAdapter = new ArticleAdapter(getContext(), list);
 
-        //mAdapter = new RVAdapter(persons);
-        mRecyclerView.setAdapter(mAdapter);
+        homeFragmentPresenter.getHomeData();
     }
 
     @Override
@@ -123,6 +112,34 @@ public class HomeFragment extends Fragment implements IHomeView {
 
     @Override
     public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void refreshData(final Datum datum) {
+        mAdapter = new DatumAdapter(getContext(), datum);
+
+        //mAdapter = new RVAdapter(persons);
+        mRecyclerView.setAdapter(mAdapter);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+
+                if (position == 0) {
+                    return 4;
+                } else if (position == 1) {
+                    return 4;
+                } else if (position < datum.getTopic().size() + 2) {
+                    return 2;
+                } else if (position == datum.getTopic().size() + 2) {
+                    return 4;
+                } else if (position < datum.getListSize() + 3) {
+                    return 4;
+                }
+                return 2;
+
+            }
+        });
 
     }
 
