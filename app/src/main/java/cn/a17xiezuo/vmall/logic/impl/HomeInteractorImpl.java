@@ -77,7 +77,7 @@ public class HomeInteractorImpl implements IHomeInteractor {
             @Override
             public void onSuccess(JSONObject response) {
                 Datum datum1 = new Datum();
-                //Log.d(TAG, "first_name: " + datum.toString());
+                Log.d(TAG, "first_name: " + response.toString());
                 try {
 
                     JSONArray jsonArray = response.getJSONArray("data");

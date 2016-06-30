@@ -21,13 +21,13 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.a17xiezuo.vmall.ui.fragment.ContactFragment;
-import cn.a17xiezuo.vmall.ui.fragment.HomeFragment;
-import cn.a17xiezuo.vmall.ui.fragment.MainActivity4Fragment;
-import cn.a17xiezuo.vmall.ui.fragment.MainActivity5Fragment;
-import cn.a17xiezuo.vmall.ui.fragment.MainActivityFragment;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.MenuCategory;
+import cn.a17xiezuo.vmall.ui.fragment.ContactFragment;
+import cn.a17xiezuo.vmall.ui.fragment.Home2Fragment;
+import cn.a17xiezuo.vmall.ui.fragment.HomeFragment;
+import cn.a17xiezuo.vmall.ui.fragment.MainActivity5Fragment;
+import cn.a17xiezuo.vmall.ui.fragment.MainActivityFragment;
 import cn.a17xiezuo.vmall.ui.widget.IconRadioButton;
 import cn.a17xiezuo.xzlibrary.ui.widget.ContentViewPagerAdapter;
 import cn.a17xiezuo.xzlibrary.ui.widget.NoScrollViewPager;
@@ -225,7 +225,7 @@ public class Main2Activity extends BaseActivity implements View.OnClickListener 
         fragments.add(MainActivityFragment.newInstance());
         fragments.add(ContactFragment.newInstance());
         fragments.add(HomeFragment.newInstance());
-        fragments.add(MainActivity4Fragment.newInstance());
+        fragments.add(Home2Fragment.newInstance());
         fragments.add(MainActivity5Fragment.newInstance());
 
         viewPagerAdapter = new ContentViewPagerAdapter(mFragmentManager,
