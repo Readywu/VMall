@@ -157,9 +157,9 @@ public class HomeFragment extends Fragment implements IHomeView {
 // you want to use the same images.
     private void initializeData() {
         persons = new ArrayList<>();
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_applist_press));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_contact_press));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_personal_press));
+        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_service_pressed));
+        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_order_pressed));
+        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_mine_pressed));
     }
 
 

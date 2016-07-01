@@ -159,7 +159,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if (i == 0) {
                 imageView.setBackgroundResource(R.drawable.ic_loading_s);
             } else {
-                imageView.setBackgroundResource(R.drawable.ic_contact_press);
+                imageView.setBackgroundResource(R.drawable.ic_order_pressed);
             }
 
             mCircleImages[i] = imageView;
@@ -178,7 +178,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     if (j == position) {
                         mCircleImages[j].setBackgroundResource(R.drawable.ic_loading_s);
                     } else {
-                        mCircleImages[j].setBackgroundResource(R.drawable.ic_contact_press);
+                        mCircleImages[j].setBackgroundResource(R.drawable.ic_order_pressed);
                     }
                 }
 

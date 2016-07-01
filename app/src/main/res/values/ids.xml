@@ -16,10 +16,10 @@
 <resources>
 
 
-    <item name="nav_message_bt" type="id" />
-    <item name="nav_applist_bt" type="id" />
-    <item name="nav_built_bt" type="id" />
-    <item name="nav_conact_bt" type="id" />
+    <item name="nav_home_bt" type="id" />
+    <item name="nav_category_bt" type="id" />
+    <item name="nav_service_bt" type="id" />
+    <item name="nav_order_bt" type="id" />
     <item name="nav_personal_bt" type="id" />
 
 </resources>

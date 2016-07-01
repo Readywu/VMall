@@ -2,22 +2,22 @@ package cn.a17xiezuo.vmall.Presenter.impl;
 
 import android.content.Context;
 
-import cn.a17xiezuo.vmall.Presenter.IContactFragmentPresenter;
+import cn.a17xiezuo.vmall.Presenter.IOrderFragmentPresenter;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.logic.IPersonInteractor;
 import cn.a17xiezuo.vmall.logic.impl.PersonInteractorImpl;
-import cn.a17xiezuo.vmall.ui.view.IContactView;
+import cn.a17xiezuo.vmall.ui.view.IOrderView;
 
 /**
  * Created by wuyunan on 16/6/27.
  */
-public class ContactFragmentPresenterImpl implements IContactFragmentPresenter, IPersonInteractor.OnPersonFinishedListener {
+public class OrderFragmentPresenterImpl implements IOrderFragmentPresenter, IPersonInteractor.OnPersonFinishedListener {
 
-    IContactView mainView;
+    IOrderView mainView;
     IPersonInteractor personInteractor;
     Context mComtext;
 
-    public ContactFragmentPresenterImpl(Context context, IContactView mainView) {
+    public OrderFragmentPresenterImpl(Context context, IOrderView mainView) {
         this.mainView = mainView;
         this.personInteractor = new PersonInteractorImpl();
         this.mComtext = context;

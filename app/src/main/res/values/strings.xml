@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">VMall</string>
     <string name="action_settings">Settings</string>
-    <string name="nav_button_app">应用</string>
+    <string name="nav_button_category">分类</string>
     <string name="nav_button_home">首页</string>
-    <string name="nav_button_built">采购单</string>
-    <string name="nav_button_contact">通讯录</string>
+    <string name="nav_button_order">进货单</string>
+    <string name="nav_button_service">客服</string>
     <string name="nav_button_mine">我的</string>
 </resources>

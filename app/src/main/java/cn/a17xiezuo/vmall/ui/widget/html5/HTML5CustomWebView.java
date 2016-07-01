@@ -1,4 +1,4 @@
-package cn.a17xiezuo.vmall.ui.view.html5;
+package cn.a17xiezuo.vmall.ui.widget.html5;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;

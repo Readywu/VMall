@@ -29,7 +29,7 @@ import cn.a17xiezuo.vmall.ui.widget.Datum2Adapter;
  *         <p/>
  *         首页功能
  */
-public class Home2Fragment extends Fragment implements IHomeView {
+public class DiscoverFragment extends Fragment implements IHomeView {
 
     @BindView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
@@ -40,12 +40,12 @@ public class Home2Fragment extends Fragment implements IHomeView {
     private Unbinder unbinder;
     IHomePresenter homeFragmentPresenter;
 
-    public static Home2Fragment newInstance() {
-        Home2Fragment fragment = new Home2Fragment();
+    public static DiscoverFragment newInstance() {
+        DiscoverFragment fragment = new DiscoverFragment();
         return fragment;
     }
 
-    public Home2Fragment() {
+    public DiscoverFragment() {
         homeFragmentPresenter = new HomePresenterImpl(getContext(), this);
     }
 
@@ -134,9 +134,9 @@ public class Home2Fragment extends Fragment implements IHomeView {
 // you want to use the same images.
     private void initializeData() {
         persons = new ArrayList<>();
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_applist_press));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_contact_press));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_personal_press));
+        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_service_pressed));
+        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_order_pressed));
+        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_mine_pressed));
     }
 
 

@@ -6,11 +6,11 @@ import cn.a17xiezuo.vmall.application.VMallApplication;
 public enum MenuCategory {
 
 
-    HOMEPAGE(VMallApplication.getInstance().getString(R.string.nav_button_home), "建设宝"),
+    HOME(VMallApplication.getInstance().getString(R.string.nav_button_home), "建设宝"),
     PERSON("我", "我"),
-    CONTACT("通讯", "通讯录"),
-    APP("应用", "应用"),
-    NEW("采购单", "采购单");
+    SERVICE("客服", "客服服务"),
+    CATEGORY("分类", "分类"),
+    ORDER("采购单", "采购单");
 
     private String displayName;
     private String customTitle;

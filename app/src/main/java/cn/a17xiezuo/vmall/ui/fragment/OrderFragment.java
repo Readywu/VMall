@@ -15,11 +15,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.a17xiezuo.vmall.Presenter.IContactFragmentPresenter;
-import cn.a17xiezuo.vmall.Presenter.impl.ContactFragmentPresenterImpl;
+import cn.a17xiezuo.vmall.Presenter.IOrderFragmentPresenter;
+import cn.a17xiezuo.vmall.Presenter.impl.OrderFragmentPresenterImpl;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.Person;
-import cn.a17xiezuo.vmall.ui.view.IContactView;
+import cn.a17xiezuo.vmall.ui.view.IOrderView;
 import cn.a17xiezuo.vmall.ui.widget.RVAdapter;
 
 
@@ -28,7 +28,7 @@ import cn.a17xiezuo.vmall.ui.widget.RVAdapter;
  *         <p/>
  *         首页功能
  */
-public class ContactFragment extends Fragment implements IContactView {
+public class OrderFragment extends Fragment implements IOrderView {
 
     @BindView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
@@ -37,15 +37,15 @@ public class ContactFragment extends Fragment implements IContactView {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Unbinder unbinder;
-    IContactFragmentPresenter homeFragmentPresenter;
+    IOrderFragmentPresenter homeFragmentPresenter;
 
-    public static ContactFragment newInstance() {
-        ContactFragment fragment = new ContactFragment();
+    public static OrderFragment newInstance() {
+        OrderFragment fragment = new OrderFragment();
         return fragment;
     }
 
-    public ContactFragment() {
-        homeFragmentPresenter = new ContactFragmentPresenterImpl(getContext(), this);
+    public OrderFragment() {
+        homeFragmentPresenter = new OrderFragmentPresenterImpl(getContext(), this);
     }
 
     @Override
@@ -111,9 +111,9 @@ public class ContactFragment extends Fragment implements IContactView {
 // you want to use the same images.
     private void initializeData() {
         persons = new ArrayList<>();
-        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_applist_press));
-        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_contact_press));
-        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_personal_press));
+        persons.add(new Person("Emma Wilson", "23 years old", R.drawable.ic_service_pressed));
+        persons.add(new Person("Lavery Maiss", "25 years old", R.drawable.ic_order_pressed));
+        persons.add(new Person("Lillie Watts", "35 years old", R.drawable.ic_mine_pressed));
     }
 
 

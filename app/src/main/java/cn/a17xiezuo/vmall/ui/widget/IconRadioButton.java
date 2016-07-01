@@ -76,9 +76,7 @@ public class IconRadioButton extends RelativeLayout {
         invalidate();
     }
 
-    public RadioButton getRadioButton() {
-        return mRadioButton;
-    }
+
 
     /**
      * set check
@@ -108,6 +106,21 @@ public class IconRadioButton extends RelativeLayout {
         }
     }
 
+    /**
+     * @param id
+     */
+    public void setButtonId(int id) {
+        mRadioButton.setId(id);
+    }
+
+    /**
+     * @param listener
+     */
+    public void setButtonOnClickListener(OnClickListener listener) {
+        if (listener == null)
+            return;
+        mRadioButton.setOnClickListener(listener);
+    }
     @SuppressLint("ResourceAsColor")
     @Override
     public void draw(Canvas canvas) {
