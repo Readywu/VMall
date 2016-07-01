@@ -13,17 +13,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import cn.a17xiezuo.vmall.Presenter.IMainviewPresenter;
-import cn.a17xiezuo.vmall.Presenter.impl.MainviewPresenterImpl;
+import cn.a17xiezuo.vmall.Presenter.IPersonCenterPresenter;
+import cn.a17xiezuo.vmall.Presenter.impl.PersonCenterFragmentPresenterImpl;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.Person;
-import cn.a17xiezuo.vmall.ui.view.IMainView;
+import cn.a17xiezuo.vmall.ui.view.IPersonCenterView;
 
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment implements IMainView {
+public class PersonCenterFragment extends Fragment implements IPersonCenterView {
 
     @BindView(R.id.hello)
     TextView helloTextView;
@@ -31,15 +31,15 @@ public class MainActivityFragment extends Fragment implements IMainView {
     Button getInfoButton;
 
     private Unbinder unbinder;
-    IMainviewPresenter mainviewPresenter;
+    IPersonCenterPresenter personCenterPresenter;
 
-    public static MainActivityFragment newInstance() {
-        MainActivityFragment fragment = new MainActivityFragment();
+    public static PersonCenterFragment newInstance() {
+        PersonCenterFragment fragment = new PersonCenterFragment();
         return fragment;
     }
 
-    public MainActivityFragment() {
-        mainviewPresenter = new MainviewPresenterImpl(getContext(), this);
+    public PersonCenterFragment() {
+        personCenterPresenter = new PersonCenterFragmentPresenterImpl(getContext(), this);
     }
 
     @Override
@@ -55,12 +55,12 @@ public class MainActivityFragment extends Fragment implements IMainView {
     public void onResume() {
         super.onResume();
 
-        mainviewPresenter.getPersionInfo();
+        personCenterPresenter.getPersionInfo();
     }
 
     @OnClick(R.id.button)
     public void getInfo(Button button) {
-        mainviewPresenter.getPersionInfo();
+        personCenterPresenter.getPersionInfo();
     }
 
     @Override
@@ -88,7 +88,6 @@ public class MainActivityFragment extends Fragment implements IMainView {
         super.onDestroyView();
         unbinder.unbind();
     }
-
 
 
 }

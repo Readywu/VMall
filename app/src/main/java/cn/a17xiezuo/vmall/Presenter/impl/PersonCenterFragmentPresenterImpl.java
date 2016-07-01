@@ -2,31 +2,31 @@ package cn.a17xiezuo.vmall.Presenter.impl;
 
 import android.content.Context;
 
-import cn.a17xiezuo.vmall.Presenter.IMainviewPresenter;
+import cn.a17xiezuo.vmall.Presenter.IPersonCenterPresenter;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.logic.IPersonInteractor;
 import cn.a17xiezuo.vmall.logic.impl.PersonInteractorImpl;
-import cn.a17xiezuo.vmall.ui.view.IServiceView;
+import cn.a17xiezuo.vmall.ui.view.IPersonCenterView;
 
 /**
  * Created by wuyunan on 16/6/27.
  */
-public class MainviewPresenterImpl implements IMainviewPresenter, IPersonInteractor.OnPersonFinishedListener {
+public class PersonCenterFragmentPresenterImpl implements IPersonCenterPresenter, IPersonInteractor.OnPersonFinishedListener {
 
-    IServiceView mainView;
+    IPersonCenterView personCenterView;
     IPersonInteractor personInteractor;
     Context mComtext;
 
-    public MainviewPresenterImpl(Context context, IServiceView mainView) {
-        this.mainView = mainView;
+    public PersonCenterFragmentPresenterImpl(Context context, IPersonCenterView mainView) {
+        this.personCenterView = mainView;
         this.personInteractor = new PersonInteractorImpl();
         this.mComtext = context;
     }
 
     @Override
     public void getPersionInfo() {
-        if (mainView != null) {
-            mainView.showProgress();
+        if (personCenterView != null) {
+            personCenterView.showProgress();
         }
         this.personInteractor.getPersonInfo(mComtext, this);
     }
@@ -34,7 +34,7 @@ public class MainviewPresenterImpl implements IMainviewPresenter, IPersonInterac
 
     @Override
     public void onDestroy() {
-        mainView = null;
+        personCenterView = null;
     }
 
     @Override
@@ -49,8 +49,8 @@ public class MainviewPresenterImpl implements IMainviewPresenter, IPersonInterac
 
     @Override
     public void onSuccess(Person person) {
-        if (mainView != null) {
-            mainView.setPerson(person);
+        if (personCenterView != null) {
+            personCenterView.setPerson(person);
         }
     }
 

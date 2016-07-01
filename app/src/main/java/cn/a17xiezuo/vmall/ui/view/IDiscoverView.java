@@ -1,13 +1,12 @@
 package cn.a17xiezuo.vmall.ui.view;
 
-import java.util.List;
-
+import cn.a17xiezuo.vmall.entity.Datum;
 import cn.a17xiezuo.vmall.entity.Person;
 
 /**
  * Created by wuyunan on 16/6/23.
  */
-public interface IMainView extends BaseView {
+public interface IDiscoverView extends BaseView {
     void showProgress();
 
     void hideProgress();
@@ -15,4 +14,6 @@ public interface IMainView extends BaseView {
     void setPerson(Person person);
 
     void showMessage(String message);
+
+    void refreshData(Datum datum);
 }

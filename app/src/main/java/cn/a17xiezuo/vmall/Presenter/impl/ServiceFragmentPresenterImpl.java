@@ -2,7 +2,7 @@ package cn.a17xiezuo.vmall.Presenter.impl;
 
 import android.content.Context;
 
-import cn.a17xiezuo.vmall.Presenter.IMainviewPresenter;
+import cn.a17xiezuo.vmall.Presenter.IServiceFragmentPresenter;
 import cn.a17xiezuo.vmall.entity.Person;
 import cn.a17xiezuo.vmall.logic.IPersonInteractor;
 import cn.a17xiezuo.vmall.logic.impl.PersonInteractorImpl;
@@ -11,13 +11,13 @@ import cn.a17xiezuo.vmall.ui.view.IServiceView;
 /**
  * Created by wuyunan on 16/6/27.
  */
-public class MainviewPresenterImpl implements IMainviewPresenter, IPersonInteractor.OnPersonFinishedListener {
+public class ServiceFragmentPresenterImpl implements IServiceFragmentPresenter, IPersonInteractor.OnPersonFinishedListener {
 
     IServiceView mainView;
     IPersonInteractor personInteractor;
     Context mComtext;
 
-    public MainviewPresenterImpl(Context context, IServiceView mainView) {
+    public ServiceFragmentPresenterImpl(Context context, IServiceView mainView) {
         this.mainView = mainView;
         this.personInteractor = new PersonInteractorImpl();
         this.mComtext = context;

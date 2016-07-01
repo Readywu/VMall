@@ -21,11 +21,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.MenuCategory;
-import cn.a17xiezuo.vmall.ui.fragment.OrderFragment;
 import cn.a17xiezuo.vmall.ui.fragment.DiscoverFragment;
 import cn.a17xiezuo.vmall.ui.fragment.HomeFragment;
-import cn.a17xiezuo.vmall.ui.fragment.MainActivity5Fragment;
-import cn.a17xiezuo.vmall.ui.fragment.MainActivityFragment;
+import cn.a17xiezuo.vmall.ui.fragment.OrderFragment;
+import cn.a17xiezuo.vmall.ui.fragment.PersonCenterFragment;
+import cn.a17xiezuo.vmall.ui.fragment.ServiceFragment;
 import cn.a17xiezuo.vmall.ui.widget.IconRadioButton;
 import cn.a17xiezuo.xzlibrary.ui.widget.ContentViewPagerAdapter;
 import cn.a17xiezuo.xzlibrary.ui.widget.NoScrollViewPager;
@@ -36,7 +36,7 @@ public class RootActivity extends BaseActivity implements View.OnClickListener {
 
     protected static final String TAG = MainActivity.class.getSimpleName();
 
-    private static final String ROOT_NAME = MainActivityFragment.class
+    private static final String ROOT_NAME = ServiceFragment.class
             .getSimpleName();
     private static final String ACTIVITY_NAME = MainActivity.class.getName();
 
@@ -75,7 +75,7 @@ public class RootActivity extends BaseActivity implements View.OnClickListener {
 
     private MenuCategory menuCategory;
     private ArrayList<Fragment> fragments;
-    private MainActivityFragment messageCenterFragment;
+    private ServiceFragment messageCenterFragment;
     private ContentViewPagerAdapter viewPagerAdapter;
 
     private boolean hasActivity;
@@ -182,13 +182,13 @@ public class RootActivity extends BaseActivity implements View.OnClickListener {
             fragments = null;
         }
         fragments = new ArrayList<Fragment>();
-        messageCenterFragment = MainActivityFragment.newInstance();
+        messageCenterFragment = ServiceFragment.newInstance();
 
         fragments.add(HomeFragment.newInstance());
         fragments.add(DiscoverFragment.newInstance());
-        fragments.add(MainActivityFragment.newInstance());
+        fragments.add(ServiceFragment.newInstance());
         fragments.add(OrderFragment.newInstance());
-        fragments.add(MainActivity5Fragment.newInstance());
+        fragments.add(PersonCenterFragment.newInstance());
 
         viewPagerAdapter = new ContentViewPagerAdapter(mFragmentManager,
                 fragments);

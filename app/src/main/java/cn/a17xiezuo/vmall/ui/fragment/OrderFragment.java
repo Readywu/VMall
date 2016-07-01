@@ -37,7 +37,7 @@ public class OrderFragment extends Fragment implements IOrderView {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Unbinder unbinder;
-    IOrderFragmentPresenter homeFragmentPresenter;
+    IOrderFragmentPresenter orderFragmentPresenter;
 
     public static OrderFragment newInstance() {
         OrderFragment fragment = new OrderFragment();
@@ -45,7 +45,7 @@ public class OrderFragment extends Fragment implements IOrderView {
     }
 
     public OrderFragment() {
-        homeFragmentPresenter = new OrderFragmentPresenterImpl(getContext(), this);
+        orderFragmentPresenter = new OrderFragmentPresenterImpl(getContext(), this);
     }
 
     @Override

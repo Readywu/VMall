@@ -15,12 +15,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import cn.a17xiezuo.vmall.Presenter.IHomePresenter;
-import cn.a17xiezuo.vmall.Presenter.impl.HomePresenterImpl;
+import cn.a17xiezuo.vmall.Presenter.IDiscoverFragmentPresenter;
+import cn.a17xiezuo.vmall.Presenter.impl.DiscoverFragmentPresenterImpl;
 import cn.a17xiezuo.vmall.R;
 import cn.a17xiezuo.vmall.entity.Datum;
 import cn.a17xiezuo.vmall.entity.Person;
-import cn.a17xiezuo.vmall.ui.view.IHomeView;
+import cn.a17xiezuo.vmall.ui.view.IDiscoverView;
 import cn.a17xiezuo.vmall.ui.widget.Datum2Adapter;
 
 
@@ -29,7 +29,7 @@ import cn.a17xiezuo.vmall.ui.widget.Datum2Adapter;
  *         <p/>
  *         首页功能
  */
-public class DiscoverFragment extends Fragment implements IHomeView {
+public class DiscoverFragment extends Fragment implements IDiscoverView {
 
     @BindView(R.id.my_recycler_view)
     RecyclerView mRecyclerView;
@@ -38,7 +38,7 @@ public class DiscoverFragment extends Fragment implements IHomeView {
     private GridLayoutManager mLayoutManager;
 
     private Unbinder unbinder;
-    IHomePresenter homeFragmentPresenter;
+    IDiscoverFragmentPresenter discoverFragmentPresenter;
 
     public static DiscoverFragment newInstance() {
         DiscoverFragment fragment = new DiscoverFragment();
@@ -46,7 +46,7 @@ public class DiscoverFragment extends Fragment implements IHomeView {
     }
 
     public DiscoverFragment() {
-        homeFragmentPresenter = new HomePresenterImpl(getContext(), this);
+        discoverFragmentPresenter = new DiscoverFragmentPresenterImpl(getContext(), this);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class DiscoverFragment extends Fragment implements IHomeView {
         mRecyclerView.setLayoutManager(mLayoutManager);
         //mRecyclerView.setLayoutManager(mLayoutManager);
 
-        homeFragmentPresenter.getHomeData();
+        discoverFragmentPresenter.getHomeData();
     }
 
     @Override
