@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".ui.activity.RootActivity">
 
-    <cn.a17xiezuo.xzlibrary.ui.widget.NoScrollViewPager
+    <tech.niuchuang.xzlibrary.ui.widget.NoScrollViewPager
         android:id="@+id/content_viewpager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -33,7 +33,7 @@
             android:layout_weight="5"
             android:orientation="horizontal">
 
-            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+            <tech.niuchuang.mall.ui.widget.IconRadioButton
                 android:id="@+id/nav_home"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -41,9 +41,9 @@
                 vmall:iconText="@string/nav_button_home"
                 vmall:iconbBackground="@drawable/nav_home_selector">
 
-            </cn.a17xiezuo.vmall.ui.widget.IconRadioButton>
+            </tech.niuchuang.mall.ui.widget.IconRadioButton>
 
-            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+            <tech.niuchuang.mall.ui.widget.IconRadioButton
                 android:id="@+id/nav_category"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -51,7 +51,7 @@
                 vmall:iconText="@string/nav_button_category"
                 vmall:iconbBackground="@drawable/nav_type_selector" />
 
-            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+            <tech.niuchuang.mall.ui.widget.IconRadioButton
                 android:id="@+id/nav_order"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -61,9 +61,9 @@
 
                 vmall:iconbBackground="@drawable/nav_order_selector">
 
-            </cn.a17xiezuo.vmall.ui.widget.IconRadioButton>
+            </tech.niuchuang.mall.ui.widget.IconRadioButton>
 
-            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+            <tech.niuchuang.mall.ui.widget.IconRadioButton
                 android:id="@+id/nav_service"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -72,9 +72,9 @@
 
                 vmall:iconbBackground="@drawable/nav_service_selector">
 
-            </cn.a17xiezuo.vmall.ui.widget.IconRadioButton>
+            </tech.niuchuang.mall.ui.widget.IconRadioButton>
 
-            <cn.a17xiezuo.vmall.ui.widget.IconRadioButton
+            <tech.niuchuang.mall.ui.widget.IconRadioButton
                 android:id="@+id/nav_personal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
