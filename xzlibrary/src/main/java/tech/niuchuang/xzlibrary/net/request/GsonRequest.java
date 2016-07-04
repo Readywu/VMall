@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 
 import tech.niuchuang.xzlibrary.net.HttpRequest;
 import tech.niuchuang.xzlibrary.net.IHttpListener;
+import tech.niuchuang.xzlibrary.utils.Log;
 
 
 /**
@@ -38,6 +39,7 @@ public class GsonRequest<T> extends RequestWrapper<T> {
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         String result = getResponseString(response);
+        Log.d("GsonRequest", result);
         if (result.equals(PARSEERROR)) {
             return Response.error(new ParseError());
         }

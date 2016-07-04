@@ -1,4 +1,4 @@
-package tech.niuchuang.mall.ui.widget;
+package tech.niuchuang.mall.ui.widget.adapter;
 
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;

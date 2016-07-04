@@ -1,4 +1,4 @@
-package tech.niuchuang.mall.ui.widget;
+package tech.niuchuang.mall.ui.widget.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

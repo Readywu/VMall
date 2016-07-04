@@ -1,4 +1,4 @@
-package tech.niuchuang.mall.ui.widget;
+package tech.niuchuang.mall.ui.widget.adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,39 +12,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import tech.niuchuang.mall.R;
-import tech.niuchuang.mall.entity.ItemArticle;
+import tech.niuchuang.mall.entity.Datum;
+import tech.niuchuang.mall.entity.Destination;
+import tech.niuchuang.mall.entity.Event;
+import tech.niuchuang.mall.entity.Topic;
+import tech.niuchuang.mall.ui.widget.viewholder.DestinationViewHolder;
+import tech.niuchuang.mall.ui.widget.viewholder.HeaderArticleViewHolder;
+import tech.niuchuang.mall.ui.widget.viewholder.HeaderViewHolder;
+import tech.niuchuang.mall.ui.widget.viewholder.ItemArticleViewHolder;
+import tech.niuchuang.mall.ui.widget.viewholder.TopicViewHolder;
 
 /**
- * 新闻列表的适配器
- * 01-14 头部是 ViewPager，下面是列表新闻
- * Created by tomchen on 1/11/16.
  */
-public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_HEADER = 0;
-    private static final int TYPE_ITEM = 1;
-
+    private static final int TYPE_EVENT = 1;
+    private static final int TYPE_TOPIC = 2;
+    private static final int TYPE_destination = 3;
+    private static final int TYPE_ITEM = 4;
     //头部固定为 张图片
     private static final int NUM_IMAGE = 4;
 
     //Handler 用到的参数值
     private static final int UPTATE_VIEWPAGER = 0;
-    private static final String TAG = ArticleAdapter.class.getSimpleName();
+    private static final String TAG = DatumAdapter.class.getSimpleName();
 
     //新闻列表
-    private List<ItemArticle> articleList;
+    private Datum datum;
 
     //设置当前 第几个图片 被选中
     private int currentIndex = 0;
@@ -55,11 +58,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private LayoutInflater mLayoutInflater;
 
 
-    public ArticleAdapter(Context context, List<ItemArticle> articleList) {
+    public DatumAdapter(Context context, Datum datum) {
         this.context = context;
-        Log.d("ArticleAdapter", articleList.size() + "");
+
         //头部viewpager图片固定是7张，剩下的是列表的数据
-        this.articleList = articleList;
+        this.datum = datum;
         mLayoutInflater = LayoutInflater.from(context);
 
 
@@ -80,12 +83,26 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return new ItemArticleViewHolder(view);
         }
         //头部返回 ViewPager 实现的轮播图片
-        if (viewType == TYPE_HEADER) {
+        if (viewType == TYPE_TOPIC) {
+            view = mLayoutInflater.inflate(
+                    R.layout.viewholder_topic_item, parent, false);
+            return new TopicViewHolder(view);
+        }
+        if (viewType == TYPE_EVENT) {
             view = mLayoutInflater.inflate(
                     R.layout.viewholder_article_header, parent, false);
             return new HeaderArticleViewHolder(view);
         }
-
+        if (viewType == TYPE_destination) {
+            view = mLayoutInflater.inflate(
+                    R.layout.viewholder_destination_item, parent, false);
+            return new DestinationViewHolder(view);
+        }
+        if (viewType == TYPE_HEADER) {
+            view = mLayoutInflater.inflate(
+                    R.layout.viewholder_t_item, parent, false);
+            return new HeaderViewHolder(view);
+        }
         return null;
 //        //可以抛出异常，没有对应的View类型
 //        throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
@@ -98,24 +115,33 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         Log.d(TAG, "" + position);
         //转型
-        if (holder instanceof ItemArticleViewHolder) {
-            ItemArticleViewHolder newHolder = (ItemArticleViewHolder) holder;
+        if (holder instanceof TopicViewHolder) {
+            TopicViewHolder newHolder = (TopicViewHolder) holder;
             //注意RecyclerView第0项是 ViewPager 占据了0 1 2 3图片
             //那么下面的列表展示是 RecyclerView 的第1项，从第4项开始
-            ItemArticle article = articleList.get(position + NUM_IMAGE - 1);
-            newHolder.rcvArticlePhoto.setImageURI(Uri.parse(article.getImageUrl()));
-            newHolder.rcvArticleTitle.setText(article.getTitle());
-            newHolder.rcvArticleDate.setText(article.getPublishDate());
-            newHolder.rcvArticleSource.setText(article.getSource());
-            //注意这个阅读次数是 int 类型，需要转化为 String 类型
-            newHolder.rcvArticleReadtimes.setText(article.getReadTimes() + "次");
-            newHolder.rcvArticlePreview.setText(article.getPreview());
+            Topic article = datum.getTopic().get(position - 1 - 1);
+            newHolder.getRcvArticlePhoto().setImageURI(Uri.parse(article.getImage()));
+            newHolder.getRcvArticleTitle().setText(article.getName());
+            newHolder.getRcvArticleDate().setText(article.getLink());
+
+        } else if (holder instanceof DestinationViewHolder) {
+            DestinationViewHolder newHolder = (DestinationViewHolder) holder;
+            //注意RecyclerView第0项是 ViewPager 占据了0 1 2 3图片
+            //那么下面的列表展示是 RecyclerView 的第1项，从第4项开始
+            Destination article = datum.getDestination().get(position - datum.getTopic().size() - 3);
+            newHolder.getRcvArticlePhoto().setImageURI(Uri.parse(article.getImage()));
+            newHolder.getRcvArticleTitle().setText(article.getName());
+            newHolder.getRcvArticleDate().setText(article.getTotalFollows());
+        } else if (holder instanceof ItemArticleViewHolder) {
+
+        } else if (holder instanceof HeaderViewHolder) {
+
         } else if (holder instanceof HeaderArticleViewHolder) {
             HeaderArticleViewHolder newHolder = (HeaderArticleViewHolder) holder;
 
-            List<ItemArticle> headers = articleList.subList(0, NUM_IMAGE);
+            List<Event> headers = datum.getEvents();
 
-            setUpViewPager(newHolder.vpHottest, newHolder.llHottestIndicator, headers);
+            setUpViewPager(newHolder.getVpHottest(), newHolder.getLlHottestIndicator(), headers);
 
         }
     }
@@ -125,10 +151,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    private void setUpViewPager(final ViewPager vp, LinearLayout llBottom, final List<ItemArticle> headerArticles) {
-        CustomPagerAdapter imageAdapter = new CustomPagerAdapter(context);
+    private void setUpViewPager(final ViewPager vp, LinearLayout llBottom, final List<Event> eventList) {
+        EventAdapter eventAdapter = new EventAdapter(context, eventList);
         //??这儿有些疑惑，Adapter 里面嵌套设置 Adapter 是否优雅？
-        vp.setAdapter(imageAdapter);
+        vp.setAdapter(eventAdapter);
 
         final Handler mHandler = new Handler() {
             public void handleMessage(Message msg) {
@@ -151,7 +177,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         //创建底部指示位置的导航栏
         final ImageView[] mCircleImages = new ImageView[6];
         llBottom.removeAllViews();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < eventList.size(); i++) {
             ImageView imageView = new ImageView(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(10, 10);
             params.setMargins(5, 0, 5, 0);
@@ -173,7 +199,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             @Override
             public void onPageSelected(int position) {
                 // 一定几个图片，几个圆点，但注意是从0开始的
-                int total = 6;
+                int total = eventList.size();
                 for (int j = 0; j < total; j++) {
                     if (j == position) {
                         mCircleImages[j].setBackgroundResource(R.drawable.ic_loading_s);
@@ -232,7 +258,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             public void run() {
                 Message message = new Message();
                 message.what = UPTATE_VIEWPAGER;
-                if (currentIndex == headerArticles.size() - 1) {
+                if (currentIndex == datum.getEvents().size() - 1) {
                     currentIndex = -1;
                 }
                 message.arg1 = currentIndex + 1;
@@ -245,56 +271,23 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getItemCount() {
         //因为多了一个头部，所以是+1,但是头部 ViewPager 占了7个
         //所以实际是少了6个
-        return articleList.size() + 1 - NUM_IMAGE;
+        return datum.getListSize() + 2;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0)
+        if (position == 0) {
+            return TYPE_EVENT;
+        } else if (position == 1) {
             return TYPE_HEADER;
-        else
-            return TYPE_ITEM;
-    }
-
-
-    class HeaderArticleViewHolder extends RecyclerView.ViewHolder {
-
-        //轮播的最热新闻图片
-        @BindView(R.id.vp_hottest)
-        ViewPager vpHottest;
-        //轮播图片下面的小圆点
-        @BindView(R.id.ll_hottest_indicator)
-        LinearLayout llHottestIndicator;
-
-        //学院广播信息
-        // @BindView(R.id.tv_college_broadcast)
-        //TextView tvCollegeBroadcast;
-
-        public HeaderArticleViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+        } else if (position < datum.getTopic().size() + 2) {
+            return TYPE_TOPIC;
+        } else if (position == datum.getTopic().size() + 2) {
+            return TYPE_HEADER;
+        } else if (position < datum.getListSize() + 2) {
+            return TYPE_destination;
         }
-    }
-
-    class ItemArticleViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.rcv_article_photo)
-        SimpleDraweeView rcvArticlePhoto;
-        @BindView(R.id.rcv_article_title)
-        TextView rcvArticleTitle;
-        @BindView(R.id.rcv_article_date)
-        TextView rcvArticleDate;
-        @BindView(R.id.rcv_article_source)
-        TextView rcvArticleSource;
-        @BindView(R.id.rcv_article_readtimes)
-        TextView rcvArticleReadtimes;
-        @BindView(R.id.rcv_article_preview)
-        TextView rcvArticlePreview;
-
-        public ItemArticleViewHolder(View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
+        return TYPE_ITEM;
     }
 
 

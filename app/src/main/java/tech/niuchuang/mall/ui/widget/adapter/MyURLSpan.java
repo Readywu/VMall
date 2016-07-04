@@ -1,4 +1,4 @@
-package tech.niuchuang.mall.ui.widget;
+package tech.niuchuang.mall.ui.widget.adapter;
 
 import android.app.Activity;
 import android.content.Context;

@@ -26,7 +26,7 @@ import tech.niuchuang.mall.ui.fragment.HomeFragment;
 import tech.niuchuang.mall.ui.fragment.OrderFragment;
 import tech.niuchuang.mall.ui.fragment.PersonCenterFragment;
 import tech.niuchuang.mall.ui.fragment.ServiceFragment;
-import tech.niuchuang.mall.ui.widget.IconRadioButton;
+import tech.niuchuang.mall.ui.widget.adapter.IconRadioButton;
 import tech.niuchuang.xzlibrary.ui.widget.ContentViewPagerAdapter;
 import tech.niuchuang.xzlibrary.ui.widget.NoScrollViewPager;
 import tech.niuchuang.xzlibrary.utils.Log;

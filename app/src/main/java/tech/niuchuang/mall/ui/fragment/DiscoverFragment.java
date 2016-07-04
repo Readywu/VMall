@@ -21,7 +21,7 @@ import tech.niuchuang.mall.R;
 import tech.niuchuang.mall.entity.Datum;
 import tech.niuchuang.mall.entity.Person;
 import tech.niuchuang.mall.ui.view.IDiscoverView;
-import tech.niuchuang.mall.ui.widget.Datum2Adapter;
+import tech.niuchuang.mall.ui.widget.adapter.Datum2Adapter;
 
 
 /**
@@ -80,7 +80,7 @@ public class DiscoverFragment extends Fragment implements IDiscoverView {
         mRecyclerView.setLayoutManager(mLayoutManager);
         //mRecyclerView.setLayoutManager(mLayoutManager);
 
-        discoverFragmentPresenter.getHomeData();
+        //discoverFragmentPresenter.getHomeData();
     }
 
     @Override

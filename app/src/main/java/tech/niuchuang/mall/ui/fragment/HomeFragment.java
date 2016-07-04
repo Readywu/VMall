@@ -22,7 +22,7 @@ import tech.niuchuang.mall.entity.Datum;
 import tech.niuchuang.mall.entity.ItemArticle;
 import tech.niuchuang.mall.entity.Person;
 import tech.niuchuang.mall.ui.view.IHomeView;
-import tech.niuchuang.mall.ui.widget.DatumAdapter;
+import tech.niuchuang.mall.ui.widget.adapter.DatumAdapter;
 
 
 /**

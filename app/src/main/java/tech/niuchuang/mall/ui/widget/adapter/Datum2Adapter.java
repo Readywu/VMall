@@ -1,10 +1,11 @@
-package tech.niuchuang.mall.ui.widget;
+package tech.niuchuang.mall.ui.widget.adapter;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,16 +24,15 @@ import tech.niuchuang.mall.R;
 import tech.niuchuang.mall.entity.Datum;
 import tech.niuchuang.mall.entity.Destination;
 import tech.niuchuang.mall.entity.Event;
-import tech.niuchuang.mall.entity.Topic;
 import tech.niuchuang.mall.ui.widget.viewholder.DestinationViewHolder;
 import tech.niuchuang.mall.ui.widget.viewholder.HeaderArticleViewHolder;
 import tech.niuchuang.mall.ui.widget.viewholder.HeaderViewHolder;
+import tech.niuchuang.mall.ui.widget.viewholder.HorizontalRecycleViewHolder;
 import tech.niuchuang.mall.ui.widget.viewholder.ItemArticleViewHolder;
-import tech.niuchuang.mall.ui.widget.viewholder.TopicViewHolder;
 
 /**
  */
-public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class Datum2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_EVENT = 1;
@@ -44,7 +44,7 @@ public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     //Handler 用到的参数值
     private static final int UPTATE_VIEWPAGER = 0;
-    private static final String TAG = DatumAdapter.class.getSimpleName();
+    private static final String TAG = Datum2Adapter.class.getSimpleName();
 
     //新闻列表
     private Datum datum;
@@ -58,7 +58,7 @@ public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private LayoutInflater mLayoutInflater;
 
 
-    public DatumAdapter(Context context, Datum datum) {
+    public Datum2Adapter(Context context, Datum datum) {
         this.context = context;
 
         //头部viewpager图片固定是7张，剩下的是列表的数据
@@ -82,27 +82,26 @@ public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                     R.layout.viewholder_article_item, parent, false);
             return new ItemArticleViewHolder(view);
         }
-        //头部返回 ViewPager 实现的轮播图片
-        if (viewType == TYPE_TOPIC) {
-            view = mLayoutInflater.inflate(
-                    R.layout.viewholder_topic_item, parent, false);
-            return new TopicViewHolder(view);
-        }
+
         if (viewType == TYPE_EVENT) {
             view = mLayoutInflater.inflate(
                     R.layout.viewholder_article_header, parent, false);
             return new HeaderArticleViewHolder(view);
         }
+
+        //头部返回 ViewPager 实现的轮播图片
+        if (viewType == TYPE_TOPIC) {
+            view = mLayoutInflater.inflate(
+                    R.layout.item_recyclerview, parent, false);
+            return new HorizontalRecycleViewHolder(view);
+        }
+
         if (viewType == TYPE_destination) {
             view = mLayoutInflater.inflate(
-                    R.layout.viewholder_destination_item, parent, false);
-            return new DestinationViewHolder(view);
+                    R.layout.item_recyclerview, parent, false);
+            return new HorizontalRecycleViewHolder(view);
         }
-        if (viewType == TYPE_HEADER) {
-            view = mLayoutInflater.inflate(
-                    R.layout.viewholder_t_item, parent, false);
-            return new HeaderViewHolder(view);
-        }
+
         return null;
 //        //可以抛出异常，没有对应的View类型
 //        throw new RuntimeException("there is no type that matches the type " + viewType + " + make sure your using types correctly");
@@ -115,14 +114,27 @@ public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         Log.d(TAG, "" + position);
         //转型
-        if (holder instanceof TopicViewHolder) {
-            TopicViewHolder newHolder = (TopicViewHolder) holder;
-            //注意RecyclerView第0项是 ViewPager 占据了0 1 2 3图片
-            //那么下面的列表展示是 RecyclerView 的第1项，从第4项开始
-            Topic article = datum.getTopic().get(position - 1 - 1);
-            newHolder.getRcvArticlePhoto().setImageURI(Uri.parse(article.getImage()));
-            newHolder.getRcvArticleTitle().setText(article.getName());
-            newHolder.getRcvArticleDate().setText(article.getLink());
+        if (holder instanceof HorizontalRecycleViewHolder) {
+            if (position == 1) {
+                HorizontalRecycleViewHolder newHolder = (HorizontalRecycleViewHolder) holder;
+                //注意RecyclerView第0项是 ViewPager 占据了0 1 2 3图片
+                //那么下面的列表展示是 RecyclerView 的第1项，从第4项开始
+                newHolder.getRecyclerView().setAdapter(new TopicAdapter(newHolder.getRecyclerView(),
+                        datum.getTopic(), R.layout.viewholder_image_item));
+                newHolder.getRecyclerView().setLayoutManager(new LinearLayoutManager(context,
+                        LinearLayoutManager.HORIZONTAL, false));
+                newHolder.setText("话题");
+
+            } else {
+                HorizontalRecycleViewHolder newHolder = (HorizontalRecycleViewHolder) holder;
+                //注意RecyclerView第0项是 ViewPager 占据了0 1 2 3图片
+                //那么下面的列表展示是 RecyclerView 的第1项，从第4项开始
+                newHolder.getRecyclerView().setAdapter(new DestinationAdapter(newHolder.getRecyclerView(),
+                        datum.getDestination(), R.layout.viewholder_image_item));
+                newHolder.getRecyclerView().setLayoutManager(new LinearLayoutManager(context,
+                        LinearLayoutManager.HORIZONTAL, false));
+                newHolder.setText("全球购物");
+            }
 
         } else if (holder instanceof DestinationViewHolder) {
             DestinationViewHolder newHolder = (DestinationViewHolder) holder;
@@ -271,7 +283,7 @@ public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public int getItemCount() {
         //因为多了一个头部，所以是+1,但是头部 ViewPager 占了7个
         //所以实际是少了6个
-        return datum.getListSize() + 2;
+        return 3;
     }
 
     @Override
@@ -279,12 +291,8 @@ public class DatumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (position == 0) {
             return TYPE_EVENT;
         } else if (position == 1) {
-            return TYPE_HEADER;
-        } else if (position < datum.getTopic().size() + 2) {
             return TYPE_TOPIC;
-        } else if (position == datum.getTopic().size() + 2) {
-            return TYPE_HEADER;
-        } else if (position < datum.getListSize() + 2) {
+        } else if (position == 2) {
             return TYPE_destination;
         }
         return TYPE_ITEM;

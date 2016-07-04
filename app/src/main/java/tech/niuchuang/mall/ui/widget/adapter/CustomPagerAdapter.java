@@ -1,4 +1,4 @@
-package tech.niuchuang.mall.ui.widget;
+package tech.niuchuang.mall.ui.widget.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

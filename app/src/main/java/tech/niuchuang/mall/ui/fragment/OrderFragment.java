@@ -20,7 +20,7 @@ import tech.niuchuang.mall.Presenter.impl.OrderFragmentPresenterImpl;
 import tech.niuchuang.mall.R;
 import tech.niuchuang.mall.entity.Person;
 import tech.niuchuang.mall.ui.view.IOrderView;
-import tech.niuchuang.mall.ui.widget.RVAdapter;
+import tech.niuchuang.mall.ui.widget.adapter.RVAdapter;
 
 
 /**
