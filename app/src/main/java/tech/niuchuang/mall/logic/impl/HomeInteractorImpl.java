@@ -68,6 +68,7 @@ public class HomeInteractorImpl implements IHomeInteractor {
 
             @Override
             public void onSuccess(Datum result) {
+                Log.d(TAG, result.toString());
                 listener.onFetchHomeDataSuccess(result);
 
             }

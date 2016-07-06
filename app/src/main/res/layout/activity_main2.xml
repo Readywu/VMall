@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:vmall="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -38,8 +38,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                vmall:iconText="@string/nav_button_home"
-                vmall:iconbBackground="@drawable/nav_home_selector">
+                app:iconText="@string/nav_button_home"
+                app:iconbBackground="@drawable/nav_home_selector">
 
             </tech.niuchuang.mall.ui.widget.adapter.IconRadioButton>
 
@@ -48,8 +48,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                vmall:iconText="@string/nav_button_category"
-                vmall:iconbBackground="@drawable/nav_type_selector" />
+                app:iconText="@string/nav_button_category"
+                app:iconbBackground="@drawable/nav_type_selector" />
 
             <tech.niuchuang.mall.ui.widget.adapter.IconRadioButton
                 android:id="@+id/nav_order"
@@ -57,9 +57,9 @@
                 android:layout_height="match_parent"
 
                 android:layout_weight="1"
-                vmall:iconText="@string/nav_button_order"
+                app:iconText="@string/nav_button_order"
 
-                vmall:iconbBackground="@drawable/nav_order_selector">
+                app:iconbBackground="@drawable/nav_order_selector">
 
             </tech.niuchuang.mall.ui.widget.adapter.IconRadioButton>
 
@@ -68,9 +68,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                vmall:iconText="@string/nav_button_service"
+                app:iconText="@string/nav_button_service"
 
-                vmall:iconbBackground="@drawable/nav_service_selector">
+                app:iconbBackground="@drawable/nav_service_selector">
 
             </tech.niuchuang.mall.ui.widget.adapter.IconRadioButton>
 
@@ -79,9 +79,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                vmall:iconText="@string/nav_button_mine"
+                app:iconText="@string/nav_button_mine"
 
-                vmall:iconbBackground="@drawable/nav_mine_selector" />
+                app:iconbBackground="@drawable/nav_mine_selector" />
         </RadioGroup>
     </LinearLayout>
 
